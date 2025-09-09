@@ -65,7 +65,7 @@
     background: linear-gradient(135deg, #FFE5B4 0%, #BC8F34 100%);
     border-radius: 50px;
     text-decoration: none;
-    color: white;
+    color: black;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 10px 30px rgba(188, 143, 52, 0.3);
@@ -154,7 +154,7 @@
 
 .btn-primary {
     background: linear-gradient(135deg, #FFE5B4 0%, #BC8F34 100%);
-    color: white;
+    color: black;
     box-shadow: 0 15px 35px rgba(188, 143, 52, 0.4);
 }
 
@@ -520,7 +520,7 @@
     text-align: center;
     padding: 18px 36px;
     background: linear-gradient(135deg, #FFE5B4 0%, #BC8F34 100%);
-    color: white;
+    color: black;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
@@ -702,7 +702,7 @@
 
 .about-cta:hover {
     background: linear-gradient(135deg, #FFE5B4 0%, #BC8F34 100%);
-    color: white;
+    color: black;
     transform: translateY(-2px);
 }
 
