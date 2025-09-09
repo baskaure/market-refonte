@@ -992,3 +992,9 @@
             height: 50px;
             object-fit: contain;
         }
+
+        button {
+  border: none;
+  outline: none; /* enlève aussi le contour bleu quand on clique */
+  background: inherit; /* optionnel : garde la couleur du parent */
+}
