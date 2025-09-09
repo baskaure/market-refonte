@@ -13,17 +13,17 @@
         }
 
         /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 5%;
-            backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 5%; /* Réduit le padding vertical pour gagner de la place */
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
 
         .nav-container {
             display: flex;
@@ -87,6 +87,8 @@
     background: radial-gradient(ellipse at center, rgba(188, 143, 52, 0.2) 0%, rgba(0, 0, 0, 1) 70%);
     position: relative;
     overflow: hidden;
+    padding-top: 80px; /* Ajoute un padding-top pour éviter le chevauchement avec la navbar */
+    box-sizing: border-box; /* Assure que le padding est inclus dans la hauteur totale */
 }
 
 .hero-bg {
@@ -113,7 +115,7 @@
         }
 
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(3rem, 7vw, 5rem); /* Réduit légèrement la taille max pour éviter le débordement */
     font-weight: 800;
     margin-bottom: 20px;
     background: linear-gradient(135deg, #FFE5B4 0%, #BC8F34 50%, #8B6B1A 100%);
@@ -123,7 +125,6 @@
     line-height: 1.1;
     animation: fadeInUp 1s ease-out;
 }
-
 
         .hero p {
             font-size: 1.4rem;
