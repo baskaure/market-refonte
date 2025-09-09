@@ -683,7 +683,18 @@
     transform: scale(1.3);
 }
 
-/* Responsive pour les flèches */
+/* Responsive pour tablettes */
+@media (max-width: 1024px) {
+    .testimonial-arrow.prev {
+        left: -15px;
+    }
+    
+    .testimonial-arrow.next {
+        right: -15px;
+    }
+}
+
+/* Responsive pour mobile */
 @media (max-width: 768px) {
     .testimonial-arrow {
         width: 40px;
@@ -692,38 +703,88 @@
     }
     
     .testimonial-arrow.prev {
-        left: -20px;
+        left: -10px;
     }
     
     .testimonial-arrow.next {
-        right: -20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonial-arrow {
-        position: relative;
-        top: auto;
-        transform: none;
-        margin: 20px 10px 0;
-    }
-    
-    .testimonial-arrow.prev {
-        left: auto;
-    }
-    
-    .testimonial-arrow.next {
-        right: auto;
+        right: -10px;
     }
     
     .testimonials-section {
-        padding: 60px 5%;
+        padding: 60px 3%;
+    }
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 600px) {
+    .testimonial-arrow.prev {
+        left: -5px;
+    }
+    
+    .testimonial-arrow.next {
+        right: -5px;
+    }
+}
+
+/* Pour très petits écrans - flèches en bas */
+@media (max-width: 480px) {
+    .testimonial-slider-wrapper {
+        padding-bottom: 60px;
+    }
+    
+    .testimonial-arrow {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        transform: none;
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .testimonial-arrow.prev {
+        left: calc(50% - 60px);
+    }
+    
+    .testimonial-arrow.next {
+        right: calc(50% - 60px);
+    }
+    
+    .testimonial-arrow:hover {
+        transform: scale(1.1);
+    }
+    
+    .testimonials-section {
+        padding: 60px 2%;
     }
     
     .testimonial-dots {
-        margin-top: 20px;
+        margin-top: 15px;
+        margin-bottom: 50px;
+    }
+    
+    .testimonial-card {
+        padding: 30px 20px;
     }
 }
+
+/* Pour écrans extra petits */
+@media (max-width: 380px) {
+    .testimonial-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .testimonial-arrow.prev {
+        left: calc(50% - 55px);
+    }
+    
+    .testimonial-arrow.next {
+        right: calc(50% - 55px);
+    }
+}
+
 
         /* Process Section */
 .process-section {
