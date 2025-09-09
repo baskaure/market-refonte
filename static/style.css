@@ -353,41 +353,65 @@
         }
 
         /* Footer */
-        footer {
-            background: #000;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 60px 5% 30px;
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             text-align: center;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        .footer .logo {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .footer-links {
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-links {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 3rem 0;
         }
 
-.footer-links a {
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #BC8F34; /* Ton doré principal */
-}
-
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
+
+        .social-link:hover {
+            background: var(--accent-gold);
+            transform: translateY(-3px);
+            background-color: #BC8F34;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            opacity: 0.6;
+        }
+
 
         /* Animations */
         @keyframes fadeInUp {
