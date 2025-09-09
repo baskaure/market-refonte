@@ -109,22 +109,66 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Section Témoignages -->
     <section class="testimonials-section">
         <div class="testimonials-container">
-            <div class="testimonial-card scroll-reveal">
-                <div class="testimonial-avatars">
-                    <div class="avatar"></div>
-                    <div class="avatar"></div>
-                    <div class="avatar"></div>
+            <div class="testimonial-slider-wrapper">
+                <div class="testimonial-slider">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-card scroll-reveal">
+                        <div class="testimonial-avatars">
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "J'ai fait x20 en 4 ans avec eux"
+                        </blockquote>
+                        <cite class="testimonial-author">
+                            <strong>Rodolphe Toupain</strong>
+                            <span>Directeur de RT-Connecting</span>
+                        </cite>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="testimonial-card scroll-reveal">
+                        <div class="testimonial-avatars">
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "Merci à toute l'équipe pour votre excellent travail ! On a atteint plusieurs millions de vues"
+                        </blockquote>
+                        <cite class="testimonial-author">
+                            <strong>Mike</strong>
+                            <span>Bazehouse</span>
+                        </cite>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="testimonial-card scroll-reveal">
+                        <div class="testimonial-avatars">
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "J'ai tous mes mois qui sont complets avec plus de 80 rdvs par mois"
+                        </blockquote>
+                        <cite class="testimonial-author">
+                            <strong>Claire</strong>
+                            <span>Hypnothérapeute</span>
+                        </cite>
+                    </div>
                 </div>
-                <blockquote class="testimonial-quote">
-                    "Merci à toute l'équipe pour votre excellent travail ! On a atteint plusieurs millions de vues"
-                </blockquote>
-                <cite class="testimonial-author">
-                    <strong>Mike</strong>
-                    <span>Bazehouse</span>
-                </cite>
+                <!-- Flèches -->
+                <button class="testimonial-arrow prev">&#10094;</button>
+                <button class="testimonial-arrow next">&#10095;</button>
+                <!-- Points de navigation -->
+                <div class="testimonial-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
             </div>
         </div>
     </section>
@@ -361,6 +405,45 @@
         document.head.appendChild(style);
 
         createParticles();
+
+        // Testimonial slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-card');
+        const dots = document.querySelectorAll('.dot');
+        const slider = document.querySelector('.testimonial-slider');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Event listeners for navigation
+        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.prev').addEventListener('click', prevSlide);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        // Initialize slider
+        showSlide(0);
     </script>
 </body>
 </html>
