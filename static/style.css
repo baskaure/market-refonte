@@ -115,7 +115,7 @@ nav {
         }
 
 .hero h1 {
-    font-size: clamp(3rem, 7vw, 5rem); /* Réduit légèrement la taille max pour éviter le débordement */
+    font-size: clamp(3rem, 8vw, 6rem); /* Réduit légèrement la taille max pour éviter le débordement */
     font-weight: 800;
     margin-bottom: 20px;
     background: linear-gradient(135deg, #FFE5B4 0%, #BC8F34 50%, #8B6B1A 100%);
