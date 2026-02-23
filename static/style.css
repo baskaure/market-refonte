@@ -1601,12 +1601,19 @@ footer::before {
 
 /* Responsive */
 @media (max-width: 900px) {
-  /* Navigation mobile : logo au-dessus, liens visibles et CTA plein largeur */
+  /* Corrige tout débordement horizontal sur mobile */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Navigation mobile : logo à gauche, bouton à droite */
   .nav-container {
     padding: 0.8rem 1.25rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .logo img {
@@ -1618,11 +1625,11 @@ footer::before {
   }
 
   .cta-nav {
-    width: 100%;
+    width: auto;
     text-align: center;
     justify-content: center;
-    padding: 0.7rem 1.25rem;
-    font-size: 0.95rem;
+    padding: 0.55rem 1.4rem;
+    font-size: 0.9rem;
   }
 
   /* Hero */
