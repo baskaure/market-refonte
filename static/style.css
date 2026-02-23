@@ -1614,14 +1614,7 @@ footer::before {
   }
 
   .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    font-size: 0.9rem;
-  }
-
-  .nav-links a {
-    opacity: 0.9;
+    display: none;
   }
 
   .cta-nav {
