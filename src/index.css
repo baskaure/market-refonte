@@ -1539,7 +1539,7 @@ footer::before {
     bottom: 0;
     top: auto;
     width: 180vw;
-    left: 50%;
+    left: 70%;
     transform: translateX(-50%);
   }
 
