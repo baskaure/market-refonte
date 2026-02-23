@@ -530,43 +530,59 @@ nav {
   z-index: 2;
 }
 
-/* Bloc glassmorphism pour "Ce que vous recevez" */
-#what-you-get .what-points {
+/* Carte Spotlight "Ce que vous recevez" */
+#what-you-get .what-you-get-card-wrap {
   max-width: 800px;
   margin: 0 auto;
   position: relative;
-  padding: 1.6rem 1.8rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 8px 32px 0 rgba(0, 0, 0, 0.37),
-    0 0 40px rgba(255, 215, 0, 0.06),
-    inset 0 0 60px rgba(255, 215, 0, 0.1);
-  overflow: hidden;
 }
 
-#what-you-get .what-points::before {
-  content: '';
+#what-you-get .what-you-get-stars {
   position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  padding: 2px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 215, 0, 0.3) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 140, 0, 0.3) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  top: 4rem;
+  left: 1.5rem;
+  z-index: 1;
   pointer-events: none;
-  z-index: -1;
+}
+
+#what-you-get .what-you-get-stars svg {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+}
+
+#what-you-get .card-spotlight.what-you-get-spotlight {
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.5rem;
+  padding: 2rem 2.5rem;
+}
+
+#what-you-get .card-spotlight.what-you-get-spotlight:hover::before {
+  --spotlight-color: rgba(255, 255, 255, 0.3);
+}
+
+#what-you-get .card-spotlight .what-points {
+  position: relative;
+  margin-bottom: 4rem;
+  padding: 7rem 0 0 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#what-you-get .what-points .what-you-get-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+#what-you-get .card-spotlight .what-points::before {
+  display: none;
 }
 
 #what-you-get .what-points ul {
@@ -576,13 +592,16 @@ nav {
 }
 
 #what-you-get .what-points li {
-  padding: 0.8rem 0;
-  color: rgba(255, 255, 255, 0.9);
+  padding: 0 0 0 1.5rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
   font-size: 1.05rem;
   line-height: 1.7;
-  text-shadow: 0 1px 5px rgba(255, 215, 0, 0.2);
   position: relative;
-  padding-left: 1.5rem;
+}
+
+#what-you-get .what-points li + li {
+  margin-top: 0.25rem;
 }
 
 #what-you-get .what-points li::before {
@@ -596,10 +615,9 @@ nav {
 
 #what-you-get .what-points p {
   margin-top: 1.5rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   line-height: 1.7;
-  text-shadow: 0 1px 5px rgba(255, 215, 0, 0.2);
 }
 
 /* Process Section - Interactive Design */
