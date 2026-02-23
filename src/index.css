@@ -125,136 +125,19 @@ nav {
   isolation: isolate;
 }
 
+.hero-light-rays {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
 .hero-content {
   max-width: 900px;
   position: relative;
   z-index: 2;
 }
 
-/* Glow inspiré de ton snippet : lumière qui part du bas avec forme elliptique */
-.hero::before {
-  content: "";
-  position: absolute;
-  bottom: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 140vw;
-  height: 90vh;
-  background: radial-gradient(
-    ellipse at center bottom,
-    var(--glow-color) 0%,
-    transparent 70%
-  );
-  filter: blur(100px);
-  mix-blend-mode: screen;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60vw;
-  height: 40vh;
-  background: radial-gradient(
-    ellipse at center bottom,
-    var(--glow-core) 0%,
-    transparent 80%
-  );
-  filter: blur(50px);
-  mix-blend-mode: plus-lighter;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Particules dans la lumière de la hero - même méthode que Calendly */
-.hero-particles {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70vw;
-  height: 50vh;
-  pointer-events: none;
-  background-image:
-    /* Cœur dense (28–72%) – positions irrégulières, pas de grille */
-    radial-gradient(2px 2px at 34% 91%, #ffffff, transparent),
-    radial-gradient(1px 1px at 41% 86%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 48% 93%, #ffffff, transparent),
-    radial-gradient(2px 2px at 52% 88%, #ffffff, transparent),
-    radial-gradient(1px 1px at 56% 94%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 61% 89%, #ffffff, transparent),
-    radial-gradient(1px 1px at 67% 92%, #ffffff, transparent),
-    radial-gradient(2px 2px at 38% 79%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 44% 74%, #ffffff, transparent),
-    radial-gradient(1px 1px at 51% 81%, #ffffff, transparent),
-    radial-gradient(2px 2px at 57% 76%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 63% 83%, #ffffff, transparent),
-    radial-gradient(1px 1px at 36% 68%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 43% 72%, #ffffff, transparent),
-    radial-gradient(2px 2px at 49% 65%, #ffffff, transparent),
-    radial-gradient(1px 1px at 54% 71%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 59% 67%, #ffffff, transparent),
-    radial-gradient(1px 1px at 46% 58%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 53% 62%, #ffffff, transparent),
-    radial-gradient(2px 2px at 48% 51%, #ffffff, transparent),
-    radial-gradient(1px 1px at 55% 56%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 42% 47%, #ffffff, transparent),
-    radial-gradient(1px 1px at 58% 44%, #ffffff, transparent),
-    radial-gradient(2px 2px at 50% 38%, #ffffff, transparent),
-    radial-gradient(1px 1px at 39% 95%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 46% 97%, #ffffff, transparent),
-    radial-gradient(1px 1px at 62% 96%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 55% 84%, #ffffff, transparent),
-    radial-gradient(1px 1px at 47% 69%, #ffffff, transparent),
-    radial-gradient(2px 2px at 52% 73%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 58% 78%, #ffffff, transparent),
-    radial-gradient(1px 1px at 44% 63%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 50% 59%, #ffffff, transparent),
-    radial-gradient(1px 1px at 56% 54%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 45% 42%, #ffffff, transparent),
-    radial-gradient(1px 1px at 52% 46%, #ffffff, transparent),
-    radial-gradient(2px 2px at 40% 82%, #ffffff, transparent),
-    radial-gradient(1px 1px at 65% 77%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 37% 87%, #ffffff, transparent),
-    radial-gradient(1px 1px at 60% 61%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 48% 44%, #ffffff, transparent),
-    /* Transition douce (18–28% et 72–82%) – moins dense */
-    radial-gradient(1.5px 1.5px at 22% 89%, #ffffff, transparent),
-    radial-gradient(1px 1px at 26% 84%, #ffffff, transparent),
-    radial-gradient(1px 1px at 19% 76%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 24% 71%, #ffffff, transparent),
-    radial-gradient(1px 1px at 78% 88%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 74% 85%, #ffffff, transparent),
-    radial-gradient(1px 1px at 81% 79%, #ffffff, transparent),
-    radial-gradient(1px 1px at 76% 68%, #ffffff, transparent),
-    radial-gradient(1.5px 1.5px at 23% 62%, #ffffff, transparent),
-    radial-gradient(1px 1px at 77% 64%, #ffffff, transparent),
-    radial-gradient(1px 1px at 21% 52%, #ffffff, transparent),
-    radial-gradient(1px 1px at 79% 55%, #ffffff, transparent),
-    /* Plus vers les bords (10–18% et 82–90%) – rare */
-    radial-gradient(1px 1px at 14% 86%, #ffffff, transparent),
-    radial-gradient(1px 1px at 17% 78%, #ffffff, transparent),
-    radial-gradient(1px 1px at 86% 87%, #ffffff, transparent),
-    radial-gradient(1px 1px at 83% 74%, #ffffff, transparent),
-    radial-gradient(1px 1px at 12% 65%, #ffffff, transparent),
-    radial-gradient(1px 1px at 88% 62%, #ffffff, transparent),
-    radial-gradient(1px 1px at 16% 48%, #ffffff, transparent),
-    radial-gradient(1px 1px at 84% 51%, #ffffff, transparent),
-    /* Bords (4–10% et 90–96%) – très rare */
-    radial-gradient(1px 1px at 6% 82%, #ffffff, transparent),
-    radial-gradient(1px 1px at 9% 71%, #ffffff, transparent),
-    radial-gradient(1px 1px at 94% 85%, #ffffff, transparent),
-    radial-gradient(1px 1px at 91% 72%, #ffffff, transparent),
-    radial-gradient(1px 1px at 8% 58%, #ffffff, transparent),
-    radial-gradient(1px 1px at 92% 61%, #ffffff, transparent);
-  background-repeat: no-repeat;
-  opacity: 0.7;
-  z-index: 1;
-}
 
 .hero h1 {
   font-size: 4.5rem;

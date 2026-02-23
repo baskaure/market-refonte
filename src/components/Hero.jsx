@@ -1,9 +1,18 @@
 import { openCalendly } from '../constants'
+import { LightRays } from './ui/light-rays'
 
 export default function Hero() {
   return (
     <section className="hero reveal reveal-delay-1">
-      <div className="hero-particles" aria-hidden="true" />
+      <div className="hero-light-rays">
+        <LightRays
+          count={7}
+          color="rgba(255, 220, 150, 0.22)"
+          blur={36}
+          speed={14}
+          length="70vh"
+        />
+      </div>
       <div className="hero-content">
         <h1>
           <span className="hero-title-desktop">
