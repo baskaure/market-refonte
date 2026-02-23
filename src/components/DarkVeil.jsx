@@ -124,7 +124,7 @@ export default function DarkVeil({
       const h = parent.clientHeight
       renderer.setSize(w * resolutionScale, h * resolutionScale)
       program.uniforms.uResolution.value.set(w, h)
-      program.uniforms.uZoom.value = w < 900 ? 1.85 : 1.0
+      program.uniforms.uZoom.value = 1.0
     }
 
     window.addEventListener('resize', resize)

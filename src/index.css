@@ -1535,12 +1535,12 @@ footer::before {
   }
 
   .hero-darkveil {
-    height: 170vh;
-    bottom: -20vh;
+    height: 70vh;
+    bottom: 0;
     top: auto;
-    width: 200vw;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    left: 0;
+    transform: none;
   }
 
   .hero h1 {
