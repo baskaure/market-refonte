@@ -6,7 +6,7 @@ export default function Team() {
         <p>Plus de 200 entreprises accompagnées pour structurer leur acquisition et transformer la publicité en croissance mesurable.</p>
       </div>
       <div className="team-grid">
-        <div className="team-member reveal reveal-delay-1" style={{ backgroundImage: "url('/img/Alex-ADAMSHA-400x380.jpg')" }}>
+        <div className="team-member reveal reveal-delay-1" style={{ backgroundImage: "url('/img/alex.jpeg')" }}>
           <div className="team-member-overlay" />
           <h3 className="member-name">Alexandre ADAMSHA</h3>
           <p className="member-role">Founder & CEO</p>
