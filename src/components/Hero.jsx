@@ -1,18 +1,9 @@
 import { openCalendly } from '../constants'
-import { LightRays } from './ui/light-rays'
+import DarkVeil from './DarkVeil'
 
 export default function Hero() {
   return (
     <section className="hero reveal reveal-delay-1">
-      <div className="hero-light-rays">
-        <LightRays
-          count={7}
-          color="rgba(255, 220, 150, 0.22)"
-          blur={36}
-          speed={14}
-          length="70vh"
-        />
-      </div>
       <div className="hero-content">
         <h1>
           <span className="hero-title-desktop">
@@ -32,6 +23,16 @@ export default function Hero() {
           <button type="button" onClick={openCalendly} className="btn-primary">Démarrer le test</button>
           <a href="#process" className="btn-secondary">Voir le déroulé</a>
         </div>
+      </div>
+      <div className="hero-darkveil">
+        <DarkVeil
+          hueShift={82}
+          noiseIntensity={0}
+          scanlineIntensity={0}
+          speed={0.5}
+          scanlineFrequency={0}
+          warpAmount={0}
+        />
       </div>
     </section>
   )
