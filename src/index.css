@@ -1538,7 +1538,7 @@ footer::before {
     height: 170vh;
     bottom: -20vh;
     top: auto;
-    width: 160vw;
+    width: 200vw;
     left: 50%;
     transform: translateX(-50%);
   }

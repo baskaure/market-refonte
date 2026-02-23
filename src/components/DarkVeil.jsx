@@ -18,6 +18,7 @@ uniform float uNoise;
 uniform float uScan;
 uniform float uScanFreq;
 uniform float uWarp;
+uniform float uZoom;
 #define iTime uTime
 #define iResolution uResolution
 
@@ -59,7 +60,7 @@ vec4 cppn_fn(vec2 coordinate,float in0,float in1,float in2){
 
 void mainImage(out vec4 fragColor,in vec2 fragCoord){
     vec2 uv=fragCoord/uResolution.xy*2.-1.;
-    // Inversion de l'orientation verticale pour que l'effet parte du bas vers le haut
+    uv/=max(uZoom,0.5);
     uv.y*=1.;
     uv+=uWarp*vec2(sin(uv.y*6.283+uTime*0.5),cos(uv.x*6.283+uTime*0.5))*0.05;
     fragColor=cppn_fn(uv,0.1*sin(0.3*uTime),0.1*sin(0.69*uTime),0.1*sin(0.44*uTime));
@@ -112,6 +113,7 @@ export default function DarkVeil({
         uScan: { value: scanlineIntensity },
         uScanFreq: { value: scanlineFrequency },
         uWarp: { value: warpAmount },
+        uZoom: { value: 1 },
       },
     })
 
@@ -122,6 +124,7 @@ export default function DarkVeil({
       const h = parent.clientHeight
       renderer.setSize(w * resolutionScale, h * resolutionScale)
       program.uniforms.uResolution.value.set(w, h)
+      program.uniforms.uZoom.value = w < 900 ? 1.85 : 1.0
     }
 
     window.addEventListener('resize', resize)
