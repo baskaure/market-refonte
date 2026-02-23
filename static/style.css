@@ -1645,8 +1645,8 @@ footer::before {
   }
 
   .hero h1 {
-    font-size: 1.8rem;
-    line-height: 1.3;
+    font-size: 1.9rem;
+    line-height: 1.25;
   }
 
   /* Sur mobile : 3 lignes comme sur ordi (ligne 1, ligne 2, highlight) */
