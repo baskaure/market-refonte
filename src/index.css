@@ -1534,6 +1534,12 @@ footer::before {
     padding: 7rem 1.25rem 3.5rem;
   }
 
+  .hero-darkveil {
+    height: 100%;
+    top: 0;
+    bottom: auto;
+  }
+
   .hero h1 {
     font-size: 1.9rem;
     line-height: 1.25;
