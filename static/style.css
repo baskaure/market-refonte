@@ -268,8 +268,12 @@ nav {
   color: var(--gold);
 }
 
-/* Saut de ligne affiché uniquement sur mobile (3 lignes) */
-.hero-br-mobile {
+.hero-title-desktop,
+.hero-title-mobile {
+  display: block;
+}
+
+.hero-title-mobile {
   display: none;
 }
 
@@ -1645,12 +1649,15 @@ footer::before {
   }
 
   .hero h1 {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     line-height: 1.25;
   }
 
-  /* Sur mobile : 3 lignes comme sur ordi (ligne 1, ligne 2, highlight) */
-  .hero-br-mobile {
+  .hero-title-desktop {
+    display: none;
+  }
+
+  .hero-title-mobile {
     display: block;
   }
 
