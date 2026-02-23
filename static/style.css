@@ -1,5 +1,3 @@
-@import url('https://fonts.cdnfonts.com/css/mona-sans');
-
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +21,7 @@ html {
 }
 
 body {
-  font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
   background: #000000;
   color: var(--white);
@@ -32,7 +30,7 @@ body {
   position: relative;
 }
 
-/* Poids par défaut renforcé pour Mona Sans (petits textes) */
+/* Poids normal pour une meilleure lisibilité */
 p,
 li,
 .nav-links a,
@@ -40,7 +38,7 @@ li,
 .team-description,
 footer p,
 footer a {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 section {
@@ -418,7 +416,7 @@ nav {
 
 .section-header h2 {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 1rem;
   color: var(--white);
 }
@@ -618,6 +616,7 @@ nav {
 
 #how-it-works .how-card h3 {
   font-size: 1.25rem;
+  font-weight: 400;
   margin-bottom: 0.5rem;
   color: #fff;
   text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
@@ -844,7 +843,7 @@ nav {
 
 .process-step-content h3 {
   font-size: 2.5em;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: 30px;
   line-height: 1.3;
@@ -1162,7 +1161,7 @@ nav {
 .testimonial-video-info .client-name {
   color: var(--white);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 0.35rem;
 }
 
@@ -1278,7 +1277,7 @@ nav {
 .testimonial-name {
   color: var(--white);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 0.25rem;
   letter-spacing: -0.01em;
 }
@@ -1480,7 +1479,7 @@ nav {
 
 .member-name {
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: 12px;
   letter-spacing: -0.02em;
@@ -1602,6 +1601,75 @@ footer::before {
 
 /* Responsive */
 @media (max-width: 900px) {
+  /* Navigation mobile : logo au-dessus, liens visibles et CTA plein largeur */
+  .nav-container {
+    padding: 0.8rem 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .logo img {
+    height: 32px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-links a {
+    opacity: 0.9;
+  }
+
+  .cta-nav {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 7rem 1.25rem 3.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Sections & grilles */
+  .section {
+    padding: 4rem 1.25rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+  }
+
   .process-container {
     flex-direction: column;
     gap: 3rem;
@@ -1634,7 +1702,7 @@ footer::before {
   }
   
   .process-content-card {
-    padding: 40px 35px;
+    padding: 40px 24px;
   }
   
   .process-step-content h3 {
@@ -1664,15 +1732,6 @@ footer::before {
     padding: 2rem;
   }
 
-  .hero h1 {
-    font-size: 2rem;
-    line-height: 1.3;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
   .team-member {
     min-height: 320px;
   }
@@ -1685,9 +1744,5 @@ footer::before {
   .member-role {
     font-size: 1rem;
     padding: 0 20px 30px;
-  }
-
-  .nav-links {
-    display: none;
   }
 }
