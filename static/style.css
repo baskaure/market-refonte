@@ -291,6 +291,7 @@ nav {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
+  font-size: 1rem;
   transition: all 0.3s;
   border: none;
   cursor: pointer;
@@ -394,6 +395,7 @@ nav {
   border: 2px solid var(--gold);
   text-decoration: none;
   font-weight: 600;
+  font-size: 1rem;
   transition: all 0.3s;
 }
 
