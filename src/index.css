@@ -1792,6 +1792,34 @@ footer::before {
     justify-items: center;
   }
 
+  /* ProfileCard : scroll possible + pas de tilt + carte à la bonne taille */
+  .pc-card-wrapper {
+    touch-action: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pc-card-shell {
+    width: 100%;
+    max-width: min(400px, calc(100vw - 2.5rem));
+    height: auto;
+    aspect-ratio: 0.718;
+    margin: 0 auto;
+  }
+
+  .pc-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 0.718;
+  }
+
+  .pc-card:hover,
+  .pc-card.active {
+    transform: none !important;
+  }
+
   .team-member {
     min-height: 320px;
   }
