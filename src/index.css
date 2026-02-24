@@ -1787,6 +1787,11 @@ footer::before {
     padding: 2rem;
   }
 
+  /* Team : cartes centrées sur mobile */
+  #team .team-grid {
+    justify-items: center;
+  }
+
   .team-member {
     min-height: 320px;
   }

@@ -35,6 +35,7 @@
   transform: translate3d(0, 0, 0.1px);
   position: relative;
   touch-action: none;
+  width: fit-content;
 }
 
 .pc-behind {
@@ -88,6 +89,9 @@
 .pc-card-shell {
   position: relative;
   z-index: 1;
+  height: 80svh;
+  max-height: 540px;
+  aspect-ratio: 0.718;
 }
 
 .pc-card * {
