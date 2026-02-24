@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import Timeline from './Timeline'
 import { openCalendly } from '../constants'
 
 const STEPS = [
@@ -38,21 +38,10 @@ const STEPS = [
 ]
 
 export default function Process() {
-  const [step, setStep] = useState(1)
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      const section = document.getElementById('process')
-      if (!section) return
-      const rect = section.getBoundingClientRect()
-      const isInView = rect.top < window.innerHeight && rect.bottom > 0
-      if (!isInView) return
-      if (e.key === 'ArrowRight' && step < 3) setStep((s) => s + 1)
-      else if (e.key === 'ArrowLeft' && step > 1) setStep((s) => s - 1)
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [step])
+  const timelineData = STEPS.map((s) => ({
+    title: s.title,
+    content: s.content,
+  }))
 
   return (
     <section className="section reveal" id="process">
@@ -60,36 +49,8 @@ export default function Process() {
         <h2>Un cadre simple pour tester votre marché</h2>
         <p>Nous ne vous demandons pas de nous croire sur parole. Nous testons d'abord, sur un cadre maîtrisé, avant d'envisager le scale.</p>
       </div>
-      <div className="process-container">
-        <div className="process-sidebar">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              role="button"
-              tabIndex={0}
-              className={`process-indicator ${step === i ? 'active' : 'inactive'}`}
-              data-step={i}
-              onClick={() => setStep(i)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setStep(i) }}
-            >
-              {i}
-            </div>
-          ))}
-        </div>
-        <div className="process-main-content">
-          <div className="process-content-card">
-            {STEPS.map((s) => (
-              <div
-                key={s.id}
-                className={`process-step-content ${step === s.id ? 'active' : ''}`}
-                data-content={s.id}
-              >
-                <h3>{s.title}</h3>
-                {s.content}
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="process-timeline-wrap">
+        <Timeline data={timelineData} animated />
       </div>
     </section>
   )
