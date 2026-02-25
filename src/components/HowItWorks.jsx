@@ -1,10 +1,13 @@
 import { openCalendly } from '../constants'
+import { TextAnimate } from './ui/text-animate'
 
 export default function HowItWorks() {
   return (
     <section className="section reveal" id="how-it-works">
       <div className="section-header">
-        <h2>Comment sont générées les opportunités ?</h2>
+        <TextAnimate animation="blurInUp" by="word" as="h2">
+          Comment sont générées les opportunités ?
+        </TextAnimate>
       </div>
       <div className="how-grid">
         <div className="how-text">

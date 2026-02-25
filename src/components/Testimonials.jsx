@@ -1,3 +1,5 @@
+import { TextAnimate } from './ui/text-animate'
+
 const VIDEO_TESTIMONIALS = [
   {
     driveId: '1_5n8F13O7dMX395KY3JiyhAUL09CF6xS',
@@ -36,7 +38,9 @@ export default function Testimonials() {
   return (
     <section className="section reveal" id="testimonials">
       <div className="section-header">
-        <h2>Ce que disent les entreprises que nous accompagnons</h2>
+        <TextAnimate animation="fadeIn" by="word" as="h2">
+          Ce que disent les entreprises que nous accompagnons
+        </TextAnimate>
       </div>
       <div className="testimonials-videos-grid">
         {VIDEO_TESTIMONIALS.map((t, i) => (

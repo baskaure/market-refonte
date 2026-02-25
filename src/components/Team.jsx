@@ -1,4 +1,5 @@
 import ProfileCard from './ProfileCard'
+import ShinyText from './ShinyText'
 
 export default function Team() {
   return (
@@ -49,7 +50,16 @@ export default function Team() {
           Nous ne sommes pas des techniciens de la pub, mais des partenaires de croissance.
           <br />
           Si le test est concluant pour vous, l'objectif est de construire une{' '}
-          <strong style={{ color: 'var(--gold)' }}>relation long terme</strong>, pas un one-shot.
+          <ShinyText
+            text="relation long terme"
+            speed={3}
+            delay={0}
+            color="#b5b5b5"
+            shineColor="#ffffff"
+            spread={120}
+            direction="left"
+          />
+          , pas un one-shot.
         </p>
       </div>
     </section>

@@ -1485,6 +1485,10 @@ nav {
   margin-right: auto;
 }
 
+#team .team-grid {
+  justify-items: center;
+}
+
 .team-member {
   background-size: cover;
   background-position: center 10%;

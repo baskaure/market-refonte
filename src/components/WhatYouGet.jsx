@@ -1,10 +1,14 @@
 import SpotlightCard from './SpotlightCard'
+import { TextAnimate } from './ui/text-animate'
+import { TextReveal } from './ui/text-reveal'
 
 export default function WhatYouGet() {
   return (
     <section className="section reveal" id="what-you-get">
       <div className="section-header">
-        <h2>Concrètement, que recevez-vous ?</h2>
+        <TextAnimate animation="blurInUp" by="word" as="h2">
+          Concrètement, que recevez-vous ?
+        </TextAnimate>
         <p>Selon votre modèle commercial, nous pouvons vous livrer :</p>
       </div>
       <div className="what-you-get-card-wrap">
@@ -47,9 +51,9 @@ export default function WhatYouGet() {
                 <strong>Des rendez-vous validés</strong> Directement dans votre agenda.
               </li>
             </ul>
-            <p className="what-final-text">
+            <TextReveal>
               Vous vous concentrez sur la vente. Nous nous concentrons sur la qualité et la régularité des opportunités.
-            </p>
+            </TextReveal>
             <div className="what-cta">
               <a href="#cta" className="github-btn">
                 Tester votre marché
