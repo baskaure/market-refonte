@@ -1,4 +1,5 @@
 import { TextAnimate } from './ui/text-animate'
+import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
 const VIDEO_TESTIMONIALS = [
   {
@@ -43,26 +44,36 @@ export default function Testimonials() {
         </TextAnimate>
       </div>
       <div className="testimonials-videos-grid">
-        {VIDEO_TESTIMONIALS.map((t, i) => (
-          <div key={t.driveId} className={`testimonial-video-card reveal reveal-delay-${i + 1}`}>
-            <div
-              className="video-preview"
-              role="button"
-              tabIndex={0}
-              style={{ backgroundImage: `url(${t.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              onClick={() => openVideo(t.driveId)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openVideo(t.driveId) }}
-            >
-              <div className="video-overlay" />
-              <div className="play-btn" />
-            </div>
-            <div className="testimonial-video-info">
-              <div className="client-name">{t.name}</div>
-              <div className="client-company">{t.company}</div>
-              <div className="testimonial-preview">{t.preview}</div>
-            </div>
-          </div>
-        ))}
+        <ScrollStack
+          useWindowScroll
+          itemDistance={60}
+          itemScale={0.015}
+          itemStackDistance={20}
+          baseScale={0.9}
+        >
+          {VIDEO_TESTIMONIALS.map((t, i) => (
+            <ScrollStackItem key={t.driveId}>
+              <div className={`testimonial-video-card reveal reveal-delay-${i + 1}`}>
+                <div
+                  className="video-preview"
+                  role="button"
+                  tabIndex={0}
+                  style={{ backgroundImage: `url(${t.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                  onClick={() => openVideo(t.driveId)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openVideo(t.driveId) }}
+                >
+                  <div className="video-overlay" />
+                  <div className="play-btn" />
+                </div>
+                <div className="testimonial-video-info">
+                  <div className="client-name">{t.name}</div>
+                  <div className="client-company">{t.company}</div>
+                  <div className="testimonial-preview">{t.preview}</div>
+                </div>
+              </div>
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
       </div>
       <div className="team-grid">
         {CARD_TESTIMONIALS.map((t, i) => (
