@@ -1,4 +1,4 @@
-import SpotlightCard from './SpotlightCard'
+import PixelCard from './PixelCard'
 import { TextAnimate } from './ui/text-animate'
 import { TextReveal } from './ui/text-reveal'
 
@@ -12,44 +12,13 @@ export default function WhatYouGet() {
         <p>Selon votre modèle commercial, nous pouvons vous livrer :</p>
       </div>
       <div className="what-you-get-card-wrap">
-        <div className="what-you-get-stars" aria-hidden="true">
-          <svg
-            width="200"
-            height="200"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 3C12 3 13.5 8.5 19 8.5C13.5 8.5 12 14 12 14C12 14 10.5 8.5 5 8.5C10.5 8.5 12 3 12 3Z"
-              fill="#D9D9D9"
-              stroke="#D9D9D9"
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-
-            <path
-              d="M19 15C19 15 19.8 17.5 22.5 17.5C19.8 17.5 19 20 19 20C19 20 18.2 17.5 15.5 17.5C18.2 17.5 19 15 19 15Z"
-              fill="#D9D9D9"
-              stroke="#D9D9D9"
-              strokeWidth="1.2"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        <SpotlightCard className="what-you-get-spotlight" spotlightColor="rgba(255, 255, 255, 0.25)">
+        <PixelCard variant="pink" className="what-you-get-spotlight">
           <div className="what-points">
             <h3 className="what-you-get-title">Résultat & Efficacité</h3>
-            <ul className="what-items">
-              <li>
-                <strong>Des prospects qualifiés</strong> Correspondant à vos critères.
-              </li>
-              <li>
-                <strong>Des demandes entrantes exploitables</strong> Formulaires complets, avec intention.
-              </li>
-              <li>
-                <strong>Des rendez-vous validés</strong> Directement dans votre agenda.
-              </li>
+            <ul className="what-steps">
+              <Step title="Des prospects qualifiés correspondant à vos critères." />
+              <Step title="Des demandes entrantes exploitables, avec formulaires complets et intention claire." />
+              <Step title="Des rendez-vous validés, directement dans votre agenda." />
             </ul>
             <TextReveal>
               Vous vous concentrez sur la vente. Nous nous concentrons sur la qualité et la régularité des opportunités.
@@ -61,8 +30,35 @@ export default function WhatYouGet() {
               </a>
             </div>
           </div>
-        </SpotlightCard>
+        </PixelCard>
       </div>
     </section>
   )
 }
+
+function Step({ title }) {
+  return (
+    <li className="what-step">
+      <span className="what-step-icon">
+        <CheckIcon />
+      </span>
+      <span>{title}</span>
+    </li>
+  )
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2a10 10 0 1 0 10 10a10 10 0 0 0 -10 -10zm4.293 7.293a1 1 0 0 1 .083 1.32l-.083 .094l-4 4a1 1 0 0 1 -1.32 .083l-.094 -.083l-2 -2a1 1 0 0 1 1.32 -1.497l.094 .083l1.293 1.292l3.293 -3.292a1 1 0 0 1 1.414 0z" />
+    </svg>
+  )
+}
+

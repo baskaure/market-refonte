@@ -542,6 +542,10 @@ nav {
   position: relative;
 }
 
+#what-you-get .what-you-get-spotlight .pixel-card-inner {
+  padding-top: 3.5rem;
+}
+
 #what-you-get .what-you-get-stars {
   position: absolute;
   top: 4rem;
@@ -595,6 +599,30 @@ nav {
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   line-height: 1.7;
+}
+
+#what-you-get .what-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+#what-you-get .what-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#what-you-get .what-step-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--gold);
 }
 
 #what-you-get .what-items {
@@ -1120,7 +1148,7 @@ nav {
 }
 
 #testimonials .testimonials-videos-grid {
-  max-width: 720px;
+  max-width: 1200px;
 }
 
 .testimonial-video-card {
