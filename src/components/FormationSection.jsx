@@ -1,3 +1,5 @@
+import { TextAnimate } from './ui/text-animate'
+
 const formationData = [
   {
     year: 2025,
@@ -80,16 +82,22 @@ export default function FormationSection() {
 
       <section className="section kf-results">
         <div className="kf-results-inner">
-          <h3>Résultats pédagogiques de nos formations</h3>
-          <p className="kf-results-subtitle">
-            Des centaines de stagiaires formés chaque année, avec des niveaux de satisfaction qui restent
-            stables dans le temps.
-          </p>
+          <div className="section-header kf-results-header">
+            <TextAnimate animation="blurInUp" by="word" as="h2">
+              Des formations évaluées chaque année
+            </TextAnimate>
+            <p className="kf-results-subtitle">
+              Pour chaque session, nous mesurons la satisfaction globale, la qualité des mises en situation et la clarté de l’intervention.
+            </p>
+          </div>
 
           <div className="kf-years-grid">
             {formationData.map((yearData) => (
               <article key={yearData.year} className="kf-year-card">
-                <h4>En {yearData.year}, {yearData.trainees} stagiaires formés</h4>
+                <header className="kf-year-header">
+                  <span className="kf-year-chip">{yearData.year}</span>
+                  <span className="kf-year-meta">{yearData.trainees} stagiaires formés</span>
+                </header>
                 <div className="kf-year-stats">
                   {yearData.stats.map((stat) => (
                     <div key={stat.label} className="kf-stat-row">

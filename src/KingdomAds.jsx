@@ -19,9 +19,9 @@ export default function KingdomAds() {
       <Nav />
       <main>
         <HeroFormation />
+        <FormationSection />
         <KingdomStats />
         <KingdomReviews />
-        <FormationSection />
         <CTA />
       </main>
       <Footer />
