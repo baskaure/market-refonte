@@ -1870,3 +1870,402 @@ footer::before {
     padding: 0 20px 30px;
   }
 }
+
+/* ============================
+   KingdomAds - Stats section
+   ============================ */
+
+.kingdom-stats {
+  position: relative;
+  padding: 5rem 0;
+  background: radial-gradient(circle at top, rgba(255, 215, 128, 0.12), transparent 55%),
+    radial-gradient(circle at bottom, rgba(255, 215, 128, 0.06), transparent 60%);
+}
+
+.kingdom-stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.kingdom-stats-header h2 {
+  font-size: 2.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.kingdom-stats-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+  color: #c0c0c0;
+  margin-bottom: 0.5rem;
+}
+
+.kingdom-stats-subtitle {
+  max-width: 640px;
+  margin: 0.75rem auto 0;
+  color: #c7c7c7;
+}
+
+.kingdom-stats-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.kingdom-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kingdom-stat-number {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.15em;
+  font-weight: 700;
+  font-size: 2.4rem;
+  background: linear-gradient(120deg, #fff7d6, #ffd27a, #ffbf3b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kingdom-stat-suffix {
+  font-size: 1.4rem;
+}
+
+.count-up-text {
+  display: inline-block;
+}
+
+.kingdom-stat-label {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+}
+
+.kingdom-stats-footnote {
+  margin-top: 2.5rem;
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .kingdom-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .kingdom-stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .kingdom-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .kingdom-stats {
+    padding: 3.5rem 0;
+  }
+
+  .kingdom-stats-header h2 {
+    font-size: 1.7rem;
+  }
+}
+
+/* ============================
+   KingdomAds - Avis (reviews)
+   ============================ */
+
+.kingdom-reviews {
+  position: relative;
+  padding: 5rem 0;
+}
+
+.kingdom-reviews-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.kingdom-reviews-header {
+  text-align: center;
+}
+
+.reviews-marquee {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.reviews-marquee .marquee:first-child {
+  margin-bottom: 1.75rem;
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-inner {
+  display: flex;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.marquee-normal .marquee-track {
+  animation: marquee-slide var(--marquee-duration, 25s) linear infinite;
+}
+
+.marquee-reverse .marquee-track {
+  animation: marquee-slide-reverse var(--marquee-duration, 25s) linear infinite;
+}
+
+.marquee-pause-on-hover:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-slide-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.review-card {
+  width: 260px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at top left, rgba(255, 215, 128, 0.16), rgba(13, 13, 13, 0.96));
+  padding: 1rem 1.1rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.review-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.review-label {
+  font-size: 0.75rem;
+  color: #b0b0b0;
+}
+
+.review-stars {
+  margin-top: 0.4rem;
+  color: #ffbf3b;
+  font-size: 0.85rem;
+}
+
+.review-body {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  color: #e2e2e2;
+}
+
+.reviews-gradient-left,
+.reviews-gradient-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+}
+
+.reviews-gradient-left {
+  left: 0;
+  background: linear-gradient(to right, #050505, transparent);
+}
+
+.reviews-gradient-right {
+  right: 0;
+  background: linear-gradient(to left, #050505, transparent);
+}
+
+@media (max-width: 600px) {
+  .kingdom-reviews {
+    padding: 3.5rem 0;
+  }
+
+  .review-card {
+    width: 230px;
+  }
+}
+
+/* ============================
+   KingdomAds Formation page
+   ============================ */
+
+.kf-main {
+  padding-bottom: 4rem;
+}
+
+.kf-hero {
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+.kf-hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.kf-hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.kf-hero-subtitle {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #d0d0d0;
+}
+
+.hero-formation-subtitle {
+  margin-top: 1rem;
+}
+
+.kf-results {
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+}
+
+.kf-results-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.kf-results > .kf-results-inner > h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.kf-results-subtitle {
+  text-align: center;
+  max-width: 640px;
+  margin: 0.75rem auto 0;
+  color: #c5c5c5;
+}
+
+.kf-years-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.kf-year-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at top left, rgba(255, 215, 128, 0.14), rgba(10, 10, 10, 0.96));
+  padding: 1.75rem 1.9rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+}
+
+.kf-year-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+.kf-year-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.kf-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.kf-stars {
+  color: #ffbf3b;
+  font-size: 0.95rem;
+  min-width: 4.3rem;
+}
+
+.kf-stat-text {
+  font-size: 0.9rem;
+  color: #e4e4e4;
+}
+
+.kf-stat-value {
+  font-weight: 600;
+}
+
+.kf-stat-label {
+  color: #cccccc;
+}
+
+@media (max-width: 900px) {
+  .kf-years-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kf-hero {
+    padding-top: 4rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .kf-hero h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .kf-year-card {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .kf-hero h1 {
+    font-size: 1.8rem;
+  }
+}
