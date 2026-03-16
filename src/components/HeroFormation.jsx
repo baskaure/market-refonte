@@ -7,7 +7,8 @@ export default function HeroFormation() {
       <div className="hero-content">
         <p className="kingdom-stats-eyebrow">Kingdom Ads Formation</p>
         <h1>
-          On vous forme à faire ce que l’on fait pour nos clients
+          On vous forme à{' '}
+          <span className="highlight">faire ce que l’on fait pour nos clients</span>
         </h1>
 
         <p className="kf-hero-subtitle hero-formation-subtitle">

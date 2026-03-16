@@ -77,16 +77,6 @@ function Stars({ count }) {
 export default function FormationSection() {
   return (
     <section className="kf-main" id="formation">
-      <section className="section kf-hero">
-        <div className="kf-hero-inner">
-          <p className="kingdom-stats-eyebrow">Kingdom Ads Formation</p>
-          <h1>On vous forme à faire ce que l’on fait pour nos clients</h1>
-          <p className="kf-hero-subtitle">
-            Programmes de formation, accompagnement opérationnel et partage de nos frameworks pour que vos
-            équipes maîtrisent la génération d'opportunités commerciales de A à Z.
-          </p>
-        </div>
-      </section>
 
       <section className="section kf-results">
         <div className="kf-results-inner">
