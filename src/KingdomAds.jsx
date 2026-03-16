@@ -5,6 +5,7 @@ import CTA from './components/CTA'
 import KingdomStats from './components/KingdomStats'
 import KingdomReviews from './components/KingdomReviews'
 import FormationSection from './components/FormationSection'
+import CertificationSection from './components/CertificationSection'
 import { useReveal } from './hooks/useReveal'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
 
@@ -23,6 +24,7 @@ export default function KingdomAds() {
         <KingdomStats />
         <KingdomReviews />
         <CTA />
+        <CertificationSection />
       </main>
       <Footer />
     </>
