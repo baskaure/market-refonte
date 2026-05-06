@@ -2,3 +2,11 @@
   display: inline-block;
 }
 
+@keyframes shiny-move {
+  from { background-position: 150% center; }
+  to { background-position: -50% center; }
+}
+
+.shiny-text-animated {
+  animation: shiny-move var(--shine-speed, 2s) linear infinite;
+}

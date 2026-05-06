@@ -133,6 +133,16 @@ nav {
   height: 600px;
   pointer-events: none;
   z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 70%, rgba(180, 140, 40, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 80% at 80% 35%, rgba(200, 160, 55, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 100% 55% at 50% 100%, rgba(150, 115, 25, 0.32) 0%, transparent 55%);
+  animation: hero-veil-breathe 6s ease-in-out infinite;
+}
+
+@keyframes hero-veil-breathe {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
 }
 
 .hero-content {
@@ -1410,6 +1420,13 @@ nav {
   gap: 1.5rem;
   padding-bottom: 1.5rem;
   will-change: transform;
+  animation: testimonials-scroll var(--col-duration, 10s) linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes testimonials-scroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
 }
 
 .testimonial-col-card {
@@ -2482,4 +2499,75 @@ footer::before {
   .kf-hero h1 {
     font-size: 1.8rem;
   }
+}
+
+/* ── glass-video-card entry animation + play button interaction ── */
+@keyframes gvc-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.glass-video-card {
+  animation: gvc-enter 0.5s ease-out var(--reveal-delay, 0s) both;
+}
+
+.glass-video-play {
+  transition: transform 0.2s ease;
+}
+.glass-video-play:hover { transform: scale(1.05); }
+.glass-video-play:active { transform: scale(0.95); }
+
+/* ── text-reveal ── */
+.text-reveal-base {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.text-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── text-animate ── */
+.ta-part {
+  opacity: 0;
+}
+
+@keyframes ta-blur-up {
+  from { opacity: 0; transform: translateY(8px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);   filter: blur(0px); }
+}
+
+@keyframes ta-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ta-part.ta-blur-up.ta-visible {
+  animation: ta-blur-up 0.4s ease-out both;
+}
+
+.ta-part.ta-fade-in.ta-visible {
+  animation: ta-fade-in 0.4s ease-out both;
+}
+
+/* ── canvas-text ── */
+@keyframes canvas-text-shift {
+  from { background-position: -50% 0%; }
+  to   { background-position: 50% 0%; }
+}
+.canvas-text-animated {
+  animation: canvas-text-shift var(--canvas-text-duration, 20s) linear infinite;
+}
+
+/* ── Reduced motion overrides ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-darkveil { animation: none !important; opacity: 0.9 !important; }
+  .shiny-text-animated { animation: none !important; }
+  .glass-video-card { animation: none !important; opacity: 1 !important; }
+  .text-reveal-base { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .ta-part { opacity: 1 !important; }
+  .ta-part.ta-blur-up.ta-visible,
+  .ta-part.ta-fade-in.ta-visible { animation: none !important; }
+  .canvas-text-animated { animation: none !important; }
 }

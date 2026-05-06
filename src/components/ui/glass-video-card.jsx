@@ -1,5 +1,3 @@
-import { motion } from 'motion/react'
-
 export function GlassVideoCard({
   image,
   title,
@@ -19,12 +17,9 @@ export function GlassVideoCard({
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <div
       className={`glass-video-card ${className}`}
+      style={{ '--reveal-delay': `${index * 0.1}s` }}
       role="button"
       tabIndex={0}
       onClick={onPlay}
@@ -54,12 +49,7 @@ export function GlassVideoCard({
         )}
 
         <div className="glass-video-overlay">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="glass-video-play"
-            aria-hidden="true"
-          >
+          <div className="glass-video-play" aria-hidden="true">
             <svg
               width="20"
               height="20"
@@ -70,7 +60,7 @@ export function GlassVideoCard({
               <path d="M8 5v14l11-7z" />
             </svg>
             <span>Voir la vidéo</span>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -101,6 +91,6 @@ export function GlassVideoCard({
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }

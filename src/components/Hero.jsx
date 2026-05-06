@@ -1,7 +1,4 @@
-import { lazy, Suspense } from 'react'
 import { openCalendly } from '../constants'
-
-const DarkVeil = lazy(() => import('./DarkVeil'))
 
 export default function Hero() {
   return (
@@ -28,18 +25,7 @@ export default function Hero() {
           <a href="#process" className="btn-secondary">Voir le déroulé</a>
         </div>
       </div>
-      <div className="hero-darkveil">
-        <Suspense fallback={null}>
-          <DarkVeil
-            hueShift={82}
-            noiseIntensity={0}
-            scanlineIntensity={0}
-            speed={0.5}
-            scanlineFrequency={0}
-            warpAmount={0}
-          />
-        </Suspense>
-      </div>
+      <div className="hero-darkveil" aria-hidden="true" />
     </section>
   )
 }

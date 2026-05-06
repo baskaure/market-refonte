@@ -1,5 +1,28 @@
-import { useInView, useMotionValue, useSpring } from 'motion/react'
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
+
+function useInViewOnce(ref) {
+  const [isInView, setIsInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [ref])
+  return isInView
+}
+
+function easeOut(t) {
+  return 1 - Math.pow(1 - t, 3)
+}
 
 export default function CountUp({
   to,
@@ -14,88 +37,75 @@ export default function CountUp({
   onEnd,
 }) {
   const ref = useRef(null)
-  const motionValue = useMotionValue(direction === 'down' ? to : from)
-
-  const damping = 20 + 40 * (1 / duration)
-  const stiffness = 100 * (1 / duration)
-
-  const springValue = useSpring(motionValue, {
-    damping,
-    stiffness,
-  })
-
-  const isInView = useInView(ref, { once: true, margin: '0px' })
+  const isInView = useInViewOnce(ref)
+  const startVal = direction === 'down' ? to : from
+  const endVal = direction === 'down' ? from : to
 
   const getDecimalPlaces = (num) => {
     const str = num.toString()
-
     if (str.includes('.')) {
       const decimals = str.split('.')[1]
-
-      if (parseInt(decimals, 10) !== 0) {
-        return decimals.length
-      }
+      if (parseInt(decimals, 10) !== 0) return decimals.length
     }
-
     return 0
   }
 
   const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to))
 
   const formatValue = useCallback(
-    (latest) => {
-      const hasDecimals = maxDecimals > 0
-
+    (val) => {
       const options = {
         useGrouping: !!separator,
-        minimumFractionDigits: hasDecimals ? maxDecimals : 0,
-        maximumFractionDigits: hasDecimals ? maxDecimals : 0,
+        minimumFractionDigits: maxDecimals,
+        maximumFractionDigits: maxDecimals,
       }
-
-      const formattedNumber = Intl.NumberFormat('en-US', options).format(latest)
-
-      return separator ? formattedNumber.replace(/,/g, separator) : formattedNumber
+      const formatted = Intl.NumberFormat('en-US', options).format(val)
+      return separator ? formatted.replace(/,/g, separator) : formatted
     },
-    [maxDecimals, separator],
+    [maxDecimals, separator]
   )
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.textContent = formatValue(direction === 'down' ? to : from)
-    }
-  }, [from, to, direction, formatValue])
+    if (ref.current) ref.current.textContent = formatValue(startVal)
+  }, [startVal, formatValue])
 
   useEffect(() => {
-    if (isInView && startWhen) {
-      if (typeof onStart === 'function') onStart()
+    if (!isInView || !startWhen) return
 
-      const timeoutId = setTimeout(() => {
-        motionValue.set(direction === 'down' ? from : to)
-      }, delay * 1000)
+    const delayMs = delay * 1000
+    const durationMs = duration * 1000
+    let rafId
+    let startTime = null
+    let started = false
 
-      const durationTimeoutId = setTimeout(() => {
+    const tick = (now) => {
+      if (startTime === null) startTime = now
+      const elapsed = now - startTime
+
+      if (elapsed < delayMs) {
+        rafId = requestAnimationFrame(tick)
+        return
+      }
+
+      if (!started) {
+        started = true
+        if (typeof onStart === 'function') onStart()
+      }
+
+      const progress = Math.min((elapsed - delayMs) / durationMs, 1)
+      const current = startVal + (endVal - startVal) * easeOut(progress)
+      if (ref.current) ref.current.textContent = formatValue(current)
+
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick)
+      } else {
         if (typeof onEnd === 'function') onEnd()
-      }, delay * 1000 + duration * 1000)
-
-      return () => {
-        clearTimeout(timeoutId)
-        clearTimeout(durationTimeoutId)
       }
     }
 
-    return undefined
-  }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration])
-
-  useEffect(() => {
-    const unsubscribe = springValue.on('change', (latest) => {
-      if (ref.current) {
-        ref.current.textContent = formatValue(latest)
-      }
-    })
-
-    return () => unsubscribe()
-  }, [springValue, formatValue])
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
+  }, [isInView, startWhen, startVal, endVal, delay, duration, formatValue, onStart, onEnd])
 
   return <span className={className} ref={ref} />
 }
-

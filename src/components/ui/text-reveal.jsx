@@ -1,17 +1,27 @@
-import { motion } from 'motion/react'
+import { useRef, useEffect } from 'react'
 
 export function TextReveal({ children, className = '' }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('text-reveal-visible')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <motion.p
-      className={className}
-      style={{ overflow: 'hidden' }}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
+    <p ref={ref} className={`text-reveal-base ${className}`}>
       {children}
-    </motion.p>
+    </p>
   )
 }
-

@@ -1,5 +1,4 @@
-import React, { useRef } from 'react'
-import { motion, useInView } from 'motion/react'
+import React, { useRef, useEffect, useState } from 'react'
 
 function getInitials(name = '') {
   return name
@@ -34,19 +33,27 @@ function Avatar({ image, name }) {
 
 export function TestimonialsColumn({ className = '', testimonials = [], duration = 10 }) {
   const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { margin: '200px 0px', once: false })
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { rootMargin: '200px 0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className={`testimonials-col ${className}`} ref={containerRef}>
-      <motion.div
-        animate={isInView ? { translateY: '-50%' } : false}
-        transition={{
-          duration,
-          repeat: Infinity,
-          ease: 'linear',
-          repeatType: 'loop',
-        }}
+      <div
         className="testimonials-col-track"
+        style={{
+          '--col-duration': `${duration}s`,
+          animationPlayState: isInView ? 'running' : 'paused',
+        }}
       >
         {[0, 1].map((dup) => (
           <React.Fragment key={dup}>
@@ -68,7 +75,7 @@ export function TestimonialsColumn({ className = '', testimonials = [], duration
             ))}
           </React.Fragment>
         ))}
-      </motion.div>
+      </div>
     </div>
   )
 }
