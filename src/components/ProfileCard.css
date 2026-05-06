@@ -34,7 +34,8 @@
   perspective: 500px;
   transform: translate3d(0, 0, 0.1px);
   position: relative;
-  touch-action: none;
+  /* pan-y laisse défiler la page quand le geste commence sur la carte (mobile) */
+  touch-action: pan-y;
   width: fit-content;
 }
 

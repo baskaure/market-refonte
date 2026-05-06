@@ -27,6 +27,22 @@ function usePrefersReducedMotion() {
   )
 }
 
+/** Viewport étroit : même logique que le mode appareil F12 — filtre moins lourd, couche GPU stable. */
+function useCompactHeroViewport() {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      if (typeof window === 'undefined') return () => {}
+      const mq = window.matchMedia('(max-width: 768px)')
+      mq.addEventListener('change', onStoreChange)
+      return () => mq.removeEventListener('change', onStoreChange)
+    },
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 768px)').matches,
+    () => false,
+  )
+}
+
 function useInstanceId() {
   const id = useId()
   const cleanId = id.replace(/:/g, '')
@@ -47,6 +63,7 @@ export function EtherealShadow({
 }) {
   const filterId = useInstanceId()
   const reducedMotion = usePrefersReducedMotion()
+  const compactViewport = useCompactHeroViewport()
   const animationEnabled =
     !reducedMotion && animation && animation.scale > 0
 
@@ -54,12 +71,24 @@ export function EtherealShadow({
   const hueRotateMotionValue = useMotionValue(180)
   const hueRotateAnimationRef = useRef(null)
 
-  const displacementScale = animation
+  const displacementScaleRaw = animation
     ? mapRange(animation.scale, 1, 100, 20, 100)
     : 0
+  const displacementScale = compactViewport
+    ? displacementScaleRaw * 0.5
+    : displacementScaleRaw
   const animationDuration = animation
     ? mapRange(animation.speed, 1, 100, 1000, 50)
     : 1
+  const hueDuration =
+    (animationDuration / 25) * (compactViewport ? 1.35 : 1)
+
+  const turbX = mapRange(animation?.scale ?? 0, 0, 100, 0.001, 0.0005)
+  const turbY = mapRange(animation?.scale ?? 0, 0, 100, 0.004, 0.002)
+  const turbFactor = compactViewport ? 0.82 : 1
+  const baseFrequency = `${turbX * turbFactor},${turbY * turbFactor}`
+
+  const blurPx = compactViewport ? 2.5 : 4
 
   useEffect(() => {
     if (!feColorMatrixRef.current || !animationEnabled) return
@@ -69,7 +98,7 @@ export function EtherealShadow({
     }
     hueRotateMotionValue.set(0)
     hueRotateAnimationRef.current = animate(hueRotateMotionValue, 360, {
-      duration: animationDuration / 25,
+      duration: hueDuration,
       repeat: Infinity,
       repeatType: 'loop',
       repeatDelay: 0,
@@ -87,7 +116,7 @@ export function EtherealShadow({
         hueRotateAnimationRef.current.stop()
       }
     }
-  }, [animationEnabled, animationDuration, hueRotateMotionValue])
+  }, [animationEnabled, hueDuration, hueRotateMotionValue])
 
   return (
     <div
@@ -97,8 +126,15 @@ export function EtherealShadow({
         position: 'relative',
         width: '100%',
         height: '100%',
-        transform: 'rotate(180deg)',
+        transform: compactViewport
+          ? 'rotate(180deg) translateZ(0)'
+          : 'rotate(180deg)',
+        WebkitTransform: compactViewport
+          ? 'rotate(180deg) translateZ(0)'
+          : 'rotate(180deg)',
         transformOrigin: 'center center',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
         ...style,
       }}
     >
@@ -106,7 +142,9 @@ export function EtherealShadow({
         style={{
           position: 'absolute',
           inset: -displacementScale,
-          filter: animationEnabled ? `url(#${filterId}) blur(4px)` : 'none',
+          filter: animationEnabled
+            ? `url(#${filterId}) blur(${blurPx}px)`
+            : 'none',
         }}
       >
         {animationEnabled && (
@@ -119,7 +157,7 @@ export function EtherealShadow({
                 <feTurbulence
                   result="undulation"
                   numOctaves="2"
-                  baseFrequency={`${mapRange(animation.scale, 0, 100, 0.001, 0.0005)},${mapRange(animation.scale, 0, 100, 0.004, 0.002)}`}
+                  baseFrequency={baseFrequency}
                   seed="0"
                   type="turbulence"
                 />

@@ -16,6 +16,29 @@ const clamp = (v, min = 0, max = 100) => Math.min(Math.max(v, min), max)
 const round = (v, precision = 3) => parseFloat(v.toFixed(precision))
 const adjust = (v, fMin, fMax, tMin, tMax) => round(tMin + ((tMax - tMin) * (v - fMin)) / (fMax - fMin))
 
+const MOBILE_TILT_MAX_WIDTH = 900
+
+function useTiltAllowed(enableTilt) {
+  const [allowed, setAllowed] = React.useState(() => {
+    if (!enableTilt || typeof window === 'undefined') return false
+    return !window.matchMedia(`(max-width: ${MOBILE_TILT_MAX_WIDTH}px)`).matches
+  })
+
+  React.useEffect(() => {
+    if (!enableTilt) {
+      setAllowed(false)
+      return
+    }
+    const mq = window.matchMedia(`(max-width: ${MOBILE_TILT_MAX_WIDTH}px)`)
+    const sync = () => setAllowed(!mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [enableTilt])
+
+  return enableTilt && allowed
+}
+
 const ProfileCardComponent = ({
   avatarUrl = '',
   iconUrl = '',
@@ -43,8 +66,10 @@ const ProfileCardComponent = ({
   const enterTimerRef = useRef(null)
   const leaveRafRef = useRef(null)
 
+  const tiltAllowed = useTiltAllowed(enableTilt)
+
   const tiltEngine = useMemo(() => {
-    if (!enableTilt) return null
+    if (!tiltAllowed) return null
 
     let rafId = null
     let running = false
@@ -104,7 +129,7 @@ const ProfileCardComponent = ({
 
       const stillFar = Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05
 
-      if (stillFar || document.hasFocus()) {
+      if (stillFar) {
         rafId = requestAnimationFrame(step)
       } else {
         running = false
@@ -153,7 +178,7 @@ const ProfileCardComponent = ({
         lastTs = 0
       },
     }
-  }, [enableTilt])
+  }, [tiltAllowed])
 
   const getOffsets = (evt, el) => {
     const rect = el.getBoundingClientRect()
@@ -231,7 +256,7 @@ const ProfileCardComponent = ({
   )
 
   useEffect(() => {
-    if (!enableTilt || !tiltEngine) return
+    if (!tiltAllowed || !tiltEngine) return
 
     const shell = shellRef.current
     if (!shell) return
@@ -281,7 +306,7 @@ const ProfileCardComponent = ({
       shell.classList.remove('entering')
     }
   }, [
-    enableTilt,
+    tiltAllowed,
     enableMobileTilt,
     tiltEngine,
     handlePointerMove,

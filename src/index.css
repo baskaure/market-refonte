@@ -1917,6 +1917,8 @@ footer::before {
 
   .hero-bg-root {
     opacity: 0.95;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
   .hero h1 {
@@ -2022,14 +2024,18 @@ footer::before {
     padding: 2rem;
   }
 
-  /* Team : cartes centrées sur mobile */
+  /* Team : une colonne, cartes plus rapprochées */
   #team .team-grid {
     justify-items: center;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    row-gap: 1.1rem;
+    margin-top: 1.75rem;
   }
 
   /* ProfileCard : scroll possible + pas de tilt + carte à la bonne taille */
   .pc-card-wrapper {
-    touch-action: auto;
+    touch-action: pan-y;
     width: 100%;
     max-width: 100%;
   }
