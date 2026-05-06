@@ -1,4 +1,5 @@
 import { TextAnimate } from './ui/text-animate'
+import { GlassVideoCard } from './ui/glass-video-card'
 
 const VIDEO_TESTIMONIALS = [
   {
@@ -7,6 +8,7 @@ const VIDEO_TESTIMONIALS = [
     name: 'Cyril alias Mr Dreamax',
     company: 'Expert en mindset et développement personnel. Suivi par plus de 3,5M de personnes',
     preview: '"Les Marketwins ont su instaurer un climat de confiance grâce à leur écoute. Ils m\'ont établi rapidement une stratégie de vente claire, structurée et parfaitement adaptée à mes besoins"',
+    tags: ['Mindset', 'Stratégie'],
   },
   {
     driveId: '1BtIMB6m5jHLt4IBSnwUalNDYadhcical',
@@ -14,6 +16,7 @@ const VIDEO_TESTIMONIALS = [
     name: 'Raphaël Buissière',
     company: 'Expert en financement immobilier',
     preview: '"Kingdom Ads a supprimé les frontières et m\'a permis de gagner en efficacité pour me concentrer sur l\'essentiel de mon activité."',
+    tags: ['Immobilier', 'Efficacité'],
   },
   {
     driveId: '1pQcQ6uTskgeyVYvfNENkZ-uPHSNV9A2E',
@@ -21,6 +24,7 @@ const VIDEO_TESTIMONIALS = [
     name: 'Rodolphe Toupain',
     company: 'Président RT Connecting / Expert en appels d\'offres',
     preview: '"J\'ai multiplié mon chiffre d\'affaires par 20 en 4 ans de collaboration avec Kingdom Ads. C\'est structuré, on a des objectifs. Merci à Alexandre et William, je recommande Kingdom Ads !"',
+    tags: ['B2B', 'Croissance'],
   },
 ]
 
@@ -44,24 +48,16 @@ export default function Testimonials() {
       </div>
       <div className="testimonials-videos-grid">
         {VIDEO_TESTIMONIALS.map((t, i) => (
-          <div key={t.driveId} className={`testimonial-video-card reveal reveal-delay-${i + 1}`}>
-            <div
-              className="video-preview"
-              role="button"
-              tabIndex={0}
-              style={{ backgroundImage: `url(${t.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              onClick={() => openVideo(t.driveId)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openVideo(t.driveId) }}
-            >
-              <div className="video-overlay" />
-              <div className="play-btn" />
-            </div>
-            <div className="testimonial-video-info">
-              <div className="client-name">{t.name}</div>
-              <div className="client-company">{t.company}</div>
-              <div className="testimonial-preview">{t.preview}</div>
-            </div>
-          </div>
+          <GlassVideoCard
+            key={t.driveId}
+            index={i}
+            image={t.image}
+            title={t.name}
+            subtitle={t.company}
+            preview={t.preview}
+            tags={t.tags}
+            onPlay={() => openVideo(t.driveId)}
+          />
         ))}
       </div>
       <div className="team-grid">
