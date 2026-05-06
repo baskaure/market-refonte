@@ -11,9 +11,12 @@ export default function Nav() {
       <div className="nav-container">
         <div className="logo">
           <picture>
-            <source type="image/webp" srcSet="/img/Or_blanc-petit.webp" />
+            <source
+              type="image/webp"
+              srcSet="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x"
+            />
             <img
-              src="/img/Or_blanc-petit.png"
+              src="/img/Or_blanc-petit-160.webp"
               alt="Kingdom Ads"
               width="160"
               height="40"

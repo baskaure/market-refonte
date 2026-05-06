@@ -306,22 +306,6 @@ nav {
   margin: 0 auto;
 }
 
-/* Pause auto. des animations CSS / paint pour les sections hors viewport.
-   Effet majeur sur le TBT car les bulles "float infinite", marquee, glow-bg,
-   holo-bg et autres animations CSS coûteuses ne consomment du CPU/GPU
-   que lorsque la section est proche du viewport. */
-.section,
-section[id] {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 800px;
-}
-
-/* Le hero doit rester rendu en permanence (above the fold + animations critiques) */
-.hero,
-section.hero {
-  content-visibility: visible;
-}
-
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -433,15 +417,15 @@ section.hero {
   z-index: -1;
 }
 
-/* Bulles dorées animées en arrière-plan */
+/* Bulles dorées (statiques) en arrière-plan */
 #how-it-works .how-bubble {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.35;
-  animation: float 20s infinite ease-in-out;
   pointer-events: none;
   z-index: 0;
+  will-change: auto;
 }
 
 #how-it-works .how-bubble:nth-child(1) {
@@ -450,7 +434,6 @@ section.hero {
   background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
   top: 20%;
   left: 10%;
-  animation-duration: 15s;
 }
 
 #how-it-works .how-bubble:nth-child(2) {
@@ -459,8 +442,6 @@ section.hero {
   background: radial-gradient(circle, #ffb347 0%, #ff6b35 100%);
   top: 60%;
   right: 15%;
-  animation-duration: 18s;
-  animation-delay: -5s;
 }
 
 #how-it-works .how-bubble:nth-child(3) {
@@ -469,8 +450,6 @@ section.hero {
   background: radial-gradient(circle, #ffa500 0%, #ff4500 100%);
   bottom: 10%;
   left: 50%;
-  animation-duration: 22s;
-  animation-delay: -10s;
 }
 
 #how-it-works .how-bubble:nth-child(4) {
@@ -479,8 +458,6 @@ section.hero {
   background: radial-gradient(circle, #daa520 0%, #b8860b 100%);
   top: 40%;
   left: 30%;
-  animation-duration: 25s;
-  animation-delay: -15s;
 }
 
 #how-it-works .how-bubble:nth-child(5) {
@@ -489,8 +466,6 @@ section.hero {
   background: radial-gradient(circle, #ffdf00 0%, #ffa500 100%);
   top: 10%;
   right: 30%;
-  animation-duration: 20s;
-  animation-delay: -8s;
 }
 
 @keyframes float {
@@ -1011,13 +986,12 @@ section.hero {
   z-index: -1;
 }
 
-/* Bulles dorées animées en arrière-plan */
+/* Bulles dorées (statiques) en arrière-plan */
 .who-bubble {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.35;
-  animation: float 20s infinite ease-in-out;
   pointer-events: none;
   z-index: 0;
 }
@@ -1028,7 +1002,6 @@ section.hero {
   background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
   top: 20%;
   left: 10%;
-  animation-duration: 15s;
 }
 
 .who-bubble:nth-child(2) {
@@ -1037,8 +1010,6 @@ section.hero {
   background: radial-gradient(circle, #ffb347 0%, #ff6b35 100%);
   top: 60%;
   right: 15%;
-  animation-duration: 18s;
-  animation-delay: -5s;
 }
 
 .who-bubble:nth-child(3) {
@@ -1047,8 +1018,6 @@ section.hero {
   background: radial-gradient(circle, #ffa500 0%, #ff4500 100%);
   bottom: 10%;
   left: 50%;
-  animation-duration: 22s;
-  animation-delay: -10s;
 }
 
 .who-bubble:nth-child(4) {
@@ -1057,8 +1026,6 @@ section.hero {
   background: radial-gradient(circle, #daa520 0%, #b8860b 100%);
   top: 40%;
   left: 30%;
-  animation-duration: 25s;
-  animation-delay: -15s;
 }
 
 .who-bubble:nth-child(5) {
@@ -1067,8 +1034,6 @@ section.hero {
   background: radial-gradient(circle, #ffdf00 0%, #ffa500 100%);
   top: 10%;
   right: 30%;
-  animation-duration: 20s;
-  animation-delay: -8s;
 }
 
 .who-left > p {
