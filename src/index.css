@@ -1928,21 +1928,25 @@ footer::before {
     overflow: hidden;
   }
 
-  /* Ethereal hero : animation mobile WebKit (hue-rotate CSS, sans displacement SVG) */
+  /* Ethereal hero : animation mobile (sans hue-rotate = même teinte dorée que le desktop) */
   @keyframes ethereal-mobile-hue {
     from {
-      -webkit-filter: blur(2.5px) hue-rotate(0deg);
-      filter: blur(2.5px) hue-rotate(0deg);
+      -webkit-filter: blur(2.5px) brightness(1) saturate(1);
+      filter: blur(2.5px) brightness(1) saturate(1);
+    }
+    50% {
+      -webkit-filter: blur(2.5px) brightness(1.1) saturate(1.12);
+      filter: blur(2.5px) brightness(1.1) saturate(1.12);
     }
     to {
-      -webkit-filter: blur(2.5px) hue-rotate(360deg);
-      filter: blur(2.5px) hue-rotate(360deg);
+      -webkit-filter: blur(2.5px) brightness(1) saturate(1);
+      filter: blur(2.5px) brightness(1) saturate(1);
     }
   }
 
   .hero .ethereal-shadow .ethereal-glow-mobile {
-    -webkit-animation: ethereal-mobile-hue var(--ethereal-mobile-hue-duration, 14s) linear infinite;
-    animation: ethereal-mobile-hue var(--ethereal-mobile-hue-duration, 14s) linear infinite;
+    -webkit-animation: ethereal-mobile-hue var(--ethereal-mobile-hue-duration, 14s) ease-in-out infinite;
+    animation: ethereal-mobile-hue var(--ethereal-mobile-hue-duration, 14s) ease-in-out infinite;
   }
 
   .hero h1 {
