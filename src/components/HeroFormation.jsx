@@ -1,8 +1,18 @@
 import { openCalendly } from '../constants'
+import { EtherealShadow } from './ui/etheral-shadow'
 
 export default function HeroFormation() {
   return (
-    <section className="hero">
+    <section className="hero reveal reveal-delay-1">
+      <div className="hero-bg-root" aria-hidden="true">
+        <EtherealShadow
+          color="rgba(212, 175, 55, 0.62)"
+          animation={{ scale: 100, speed: 90 }}
+          noise={{ opacity: 0.42, scale: 1.2 }}
+          sizing="fill"
+        />
+      </div>
+
       <div className="hero-content">
         <p className="kingdom-stats-eyebrow">Kingdom Ads Formation</p>
         <h1>
@@ -21,7 +31,6 @@ export default function HeroFormation() {
           </button>
         </div>
       </div>
-      <div className="hero-darkveil" aria-hidden="true" />
     </section>
   )
 }

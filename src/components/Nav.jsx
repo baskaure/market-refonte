@@ -1,13 +1,33 @@
+import { useState, useLayoutEffect, useEffect } from 'react'
 import { openCalendly } from '../constants'
 
+const SCROLL_THRESHOLD_PX = 40
+
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(() =>
+    typeof window !== 'undefined' && window.scrollY > SCROLL_THRESHOLD_PX,
+  )
+
   const isKingdomAds =
     typeof window !== 'undefined' &&
     window.location &&
     window.location.pathname.startsWith('/kingdomads')
 
+  useLayoutEffect(() => {
+    setScrolled(window.scrollY > SCROLL_THRESHOLD_PX)
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > SCROLL_THRESHOLD_PX)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <nav>
+    <nav className={scrolled ? 'nav-scrolled' : ''} aria-label="Navigation principale">
       <div className="nav-container">
         <div className="logo">
           <picture>

@@ -51,8 +51,14 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #000000;
+  background: transparent;
   z-index: 1000;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+nav.nav-scrolled {
+  background: #000000;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .nav-container {
@@ -125,24 +131,12 @@ nav {
   isolation: isolate;
 }
 
-.hero-darkveil {
+/* Calque de fond hero (ombre éthérée retournée 180° dans le composant) */
+.hero-bg-root {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 600px;
+  inset: 0;
   pointer-events: none;
-  z-index: 1;
-  background:
-    radial-gradient(ellipse 80% 60% at 15% 70%, rgba(180, 140, 40, 0.28) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 80% at 80% 35%, rgba(200, 160, 55, 0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 100% 55% at 50% 100%, rgba(150, 115, 25, 0.32) 0%, transparent 55%);
-  animation: hero-veil-breathe 6s ease-in-out infinite;
-}
-
-@keyframes hero-veil-breathe {
-  0%, 100% { opacity: 0.75; }
-  50% { opacity: 1; }
+  z-index: 0;
 }
 
 .hero-content {
@@ -1921,13 +1915,8 @@ footer::before {
     padding: 7rem 1.25rem 3.5rem;
   }
 
-  .hero-darkveil {
-    height: 150vh;
-    bottom: 0;
-    top: auto;
-    width: 220vw;
-    left: 80%;
-    transform: translateX(-50%);
+  .hero-bg-root {
+    opacity: 0.95;
   }
 
   .hero h1 {
@@ -2562,7 +2551,9 @@ footer::before {
 
 /* ── Reduced motion overrides ── */
 @media (prefers-reduced-motion: reduce) {
-  .hero-darkveil { animation: none !important; opacity: 0.9 !important; }
+  .hero-bg-root {
+    opacity: 0.9 !important;
+  }
   .shiny-text-animated { animation: none !important; }
   .glass-video-card { animation: none !important; opacity: 1 !important; }
   .text-reveal-base { opacity: 1 !important; transform: none !important; transition: none !important; }
