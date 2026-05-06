@@ -2,7 +2,7 @@ import { openCalendly } from '../constants'
 
 export default function HeroFormation() {
   return (
-    <section className="hero reveal reveal-delay-1">
+    <section className="hero">
       <div className="hero-content">
         <p className="kingdom-stats-eyebrow">Kingdom Ads Formation</p>
         <h1>

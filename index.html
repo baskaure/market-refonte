@@ -23,8 +23,6 @@
   <meta name="twitter:description" content="On ne vend pas des leads. On vend des opportunités commerciales qualifiées, à un coût connu à l'avance." />
   <meta name="twitter:image" content="https://www.marketwins.fr/img/logo.webp" />
 
-  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" media="print" onload="this.media='all'" data-calendly="true" />
-  <noscript><link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" /></noscript>
 
   <link rel="icon" type="image/png" href="/img/logo.png" />
 
@@ -61,13 +59,47 @@
   </noscript>
 </head>
 <body>
-  <div id="root"></div>
-  <script
-    src="https://assets.calendly.com/assets/external/widget.js"
-    type="text/javascript"
-    async
-    data-calendly="true"
-  ></script>
+  <div id="root">
+    <nav>
+      <div class="nav-container">
+        <div class="logo">
+          <picture>
+            <source type="image/webp" srcset="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x" />
+            <img src="/img/Or_blanc-petit-160.webp" alt="Kingdom Ads" width="160" height="40" fetchpriority="high" />
+          </picture>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#how-it-works">Fonctionnement</a></li>
+          <li><a href="#process">Processus</a></li>
+          <li><a href="#testimonials">Témoignages</a></li>
+          <li><a href="#team">Équipe</a></li>
+          <li><a href="#cta">Appel</a></li>
+        </ul>
+        <button type="button" class="cta-nav">Démarrer</button>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>
+          <span class="hero-title-desktop">
+            On ne vend pas des leads.<br>
+            On vend des <span class="highlight">opportunités commerciales qualifiées</span>
+          </span>
+          <span class="hero-title-mobile">
+            On ne vend pas des leads.<br>
+            On vend des <span class="highlight">opportunités</span><br>
+            <span class="highlight">commerciales qualifiées</span>
+          </span>
+        </h1>
+        <p>Arrêtez de payer pour de la visibilité. Investissez dans des opportunités commerciales réelles, à un coût connu à l'avance.</p>
+        <div class="hero-buttons">
+          <button type="button" class="btn-primary">Démarrer le test</button>
+          <a href="#process" class="btn-secondary">Voir le déroulé</a>
+        </div>
+      </div>
+      <div class="hero-darkveil" aria-hidden="true"></div>
+    </section>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

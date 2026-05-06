@@ -2,7 +2,7 @@ import { openCalendly } from '../constants'
 
 export default function Hero() {
   return (
-    <section className="hero reveal reveal-delay-1">
+    <section className="hero">
       <div className="hero-content">
         <h1>
           <span className="hero-title-desktop">
