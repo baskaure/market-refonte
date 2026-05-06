@@ -1,33 +1,52 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CALENDLY_URL } from '../constants'
+import { loadCalendly } from '../utils/loadCalendly'
 import { TextAnimate } from './ui/text-animate'
 
 export default function CTA() {
+  const widgetRef = useRef(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    const node = widgetRef.current
+    if (!node) return
 
-    let attempts = 0
-    const maxAttempts = 20
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true)
+      return
+    }
 
-    const interval = setInterval(() => {
-      const calendly = window.Calendly
-      const parent = document.querySelector('.calendly-inline-widget')
-
-      if (calendly && parent) {
-        calendly.initInlineWidget({
-          url: CALENDLY_URL,
-          parentElement: parent,
-        })
-        clearInterval(interval)
-      } else if (attempts >= maxAttempts) {
-        clearInterval(interval)
-      }
-
-      attempts += 1
-    }, 500)
-
-    return () => clearInterval(interval)
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldLoad(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '300px' },
+    )
+    io.observe(node)
+    return () => io.disconnect()
   }, [])
+
+  useEffect(() => {
+    if (!shouldLoad) return
+    let cancelled = false
+
+    loadCalendly().then((Calendly) => {
+      if (cancelled || !Calendly || !widgetRef.current) return
+      Calendly.initInlineWidget({
+        url: CALENDLY_URL,
+        parentElement: widgetRef.current,
+      })
+    }).catch((e) => {
+      console.error('Calendly inline widget failed to load', e)
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [shouldLoad])
 
   return (
     <section className="section" id="cta">
@@ -39,6 +58,7 @@ export default function CTA() {
       </div>
       <div className="calendly-wrapper">
         <div
+          ref={widgetRef}
           className="calendly-inline-widget"
           style={{ minWidth: '320px', height: '700px' }}
         />

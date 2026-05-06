@@ -1,10 +1,7 @@
 import { openCalendly } from '../constants'
 import DarkVeil from './DarkVeil'
-import { TextGenerateEffect } from './ui/text-generate-effect'
 
 export default function Hero() {
-  const heroSubtitle = `Arrêtez de payer pour de la visibilité. Investissez dans des opportunités commerciales réelles, à un coût connu à l'avance.`
-
   return (
     <section className="hero reveal reveal-delay-1">
       <div className="hero-content">
@@ -20,7 +17,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        <TextGenerateEffect words={heroSubtitle} />
+        <p>Arrêtez de payer pour de la visibilité. Investissez dans des opportunités commerciales réelles, à un coût connu à l'avance.</p>
 
         <div className="hero-buttons">
           <button type="button" onClick={openCalendly} className="btn-primary">
