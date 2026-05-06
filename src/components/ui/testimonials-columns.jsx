@@ -21,6 +21,7 @@ function Avatar({ image, name }) {
         height={40}
         className="testimonial-col-avatar"
         loading="lazy"
+        decoding="async"
       />
     )
   }

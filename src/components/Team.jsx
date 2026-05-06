@@ -19,13 +19,13 @@ export default function Team() {
           handle="alexandre"
           status="Online"
           contactText="Parler à Alexandre"
-          avatarUrl="/img/alex.jpeg"
-          miniAvatarUrl="/img/alex.jpeg"
+          avatarUrl="/img/alex-800.webp"
+          miniAvatarUrl="/img/alex-400.webp"
           showUserInfo={false}
           enableTilt={true}
           enableMobileTilt={false}
           behindGlowColor="rgba(212, 175, 55, 0.67)"
-          iconUrl="/img/Or_blanc-petit.png"
+          iconUrl="/img/Or_blanc-petit.webp"
           innerGradient="linear-gradient(145deg,rgba(212,175,55,0.32) 0%,rgba(0,0,0,0.9) 100%)"
         />
         <ProfileCard
@@ -35,13 +35,13 @@ export default function Team() {
           handle="william"
           status="Online"
           contactText="Parler à William"
-          avatarUrl="/img/William-ADAMSHA-400x380.jpg"
-          miniAvatarUrl="/img/William-ADAMSHA-400x380.jpg"
+          avatarUrl="/img/William-ADAMSHA-400x380.webp"
+          miniAvatarUrl="/img/William-ADAMSHA-400x380.webp"
           showUserInfo={false}
           enableTilt={true}
           enableMobileTilt={false}
           behindGlowColor="rgba(212, 175, 55, 0.67)"
-          iconUrl="/img/Or_blanc-petit.png"
+          iconUrl="/img/Or_blanc-petit.webp"
           innerGradient="linear-gradient(145deg,rgba(212,175,55,0.32) 0%,rgba(0,0,0,0.9) 100%)"
         />
       </div>

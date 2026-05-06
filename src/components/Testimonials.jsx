@@ -5,7 +5,7 @@ import { TestimonialsColumn } from './ui/testimonials-columns'
 const VIDEO_TESTIMONIALS = [
   {
     driveId: '1_5n8F13O7dMX395KY3JiyhAUL09CF6xS',
-    image: '/img/dreamax.jpg',
+    image: '/img/dreamax-800.webp',
     name: 'Cyril alias Mr Dreamax',
     company: 'Expert en mindset et développement personnel. Suivi par plus de 3,5M de personnes',
     preview: '"Les Marketwins ont su instaurer un climat de confiance grâce à leur écoute. Ils m\'ont établi rapidement une stratégie de vente claire, structurée et parfaitement adaptée à mes besoins"',
@@ -13,7 +13,7 @@ const VIDEO_TESTIMONIALS = [
   },
   {
     driveId: '1BtIMB6m5jHLt4IBSnwUalNDYadhcical',
-    image: '/img/raphael.jpg',
+    image: '/img/raphael-800.webp',
     name: 'Raphaël Buissière',
     company: 'Expert en financement immobilier',
     preview: '"Kingdom Ads a supprimé les frontières et m\'a permis de gagner en efficacité pour me concentrer sur l\'essentiel de mon activité."',
@@ -21,7 +21,7 @@ const VIDEO_TESTIMONIALS = [
   },
   {
     driveId: '1pQcQ6uTskgeyVYvfNENkZ-uPHSNV9A2E',
-    image: '/img/rt.jpg',
+    image: '/img/rt-800.webp',
     name: 'Rodolphe Toupain',
     company: 'Président RT Connecting / Expert en appels d\'offres',
     preview: '"J\'ai multiplié mon chiffre d\'affaires par 20 en 4 ans de collaboration avec Kingdom Ads. C\'est structuré, on a des objectifs. Merci à Alexandre et William, je recommande Kingdom Ads !"',
@@ -34,7 +34,7 @@ const ALL_TESTIMONIALS = [
     text: "J'ai fait x20 en 4 ans avec eux. C'est structuré, on a des objectifs clairs et un vrai accompagnement.",
     name: 'Rodolphe Toupain',
     role: 'Directeur • RT-Connecting',
-    image: '/img/rt.jpg',
+    image: '/img/rt-400.webp',
   },
   {
     text: "Merci à toute l'équipe pour votre excellent travail ! On a atteint plusieurs millions de vues.",
@@ -50,13 +50,13 @@ const ALL_TESTIMONIALS = [
     text: "Stratégie claire, exécution carrée. Ils ont fait sauter mes plafonds et j'ai enfin un pipeline prévisible.",
     name: 'Cyril',
     role: 'Mr Dreamax • Coach mindset',
-    image: '/img/dreamax.jpg',
+    image: '/img/dreamax-400.webp',
   },
   {
     text: "Ils ont su comprendre mon métier et adapter leur méthode. Mes leads ont triplé en 3 mois.",
     name: 'Raphaël Buissière',
     role: 'Expert financement immobilier',
-    image: '/img/raphael.jpg',
+    image: '/img/raphael-400.webp',
   },
   {
     text: 'Une équipe accessible et réactive. On sent une vraie volonté de faire performer le client.',

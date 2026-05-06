@@ -32,11 +32,14 @@ export function GlassVideoCard({
       aria-label={`Lire la vidéo témoignage de ${title}`}
     >
       <div className="glass-video-media">
-        <motion.img
+        <img
           src={image}
           alt={title}
           className="glass-video-img"
           loading="lazy"
+          decoding="async"
+          width="800"
+          height="450"
         />
         <div className="glass-video-gradient" />
 

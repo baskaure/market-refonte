@@ -319,6 +319,9 @@ const ProfileCardComponent = ({
                 src={avatarUrl}
                 alt={`${name || 'User'} avatar`}
                 loading="lazy"
+                decoding="async"
+                width="406"
+                height="540"
                 onError={(e) => {
                   const t = e.target
                   t.style.display = 'none'
