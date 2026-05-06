@@ -27,18 +27,18 @@ function usePrefersReducedMotion() {
   )
 }
 
-/** Viewport étroit : même logique que le mode appareil F12 — filtre moins lourd, couche GPU stable. */
+/** Viewport étroit : même logique que le mode appareil F12 — filtre moins lourd, masque plein cadre. */
 function useCompactHeroViewport() {
   return useSyncExternalStore(
     (onStoreChange) => {
       if (typeof window === 'undefined') return () => {}
-      const mq = window.matchMedia('(max-width: 768px)')
+      const mq = window.matchMedia('(max-width: 900px)')
       mq.addEventListener('change', onStoreChange)
       return () => mq.removeEventListener('change', onStoreChange)
     },
     () =>
       typeof window !== 'undefined' &&
-      window.matchMedia('(max-width: 768px)').matches,
+      window.matchMedia('(max-width: 900px)').matches,
     () => false,
   )
 }
@@ -90,6 +90,10 @@ export function EtherealShadow({
 
   const blurPx = compactViewport ? 2.5 : 4
 
+  /* cover rogne souvent le masque de façon asymétrique en portrait ; stretch = plein cadre sur mobile */
+  const maskFill =
+    sizing === 'stretch' || compactViewport ? '100% 100%' : 'cover'
+
   useEffect(() => {
     if (!feColorMatrixRef.current || !animationEnabled) return
 
@@ -122,10 +126,13 @@ export function EtherealShadow({
     <div
       className={`ethereal-shadow ${className}`.trim()}
       style={{
-        overflow: 'hidden',
+        /* Sur mobile, hidden + rotate + filtres WebKit peut rogner un côté ; le hero clip déjà */
+        overflow: compactViewport ? 'visible' : 'hidden',
         position: 'relative',
         width: '100%',
         height: '100%',
+        minWidth: '100%',
+        minHeight: '100%',
         transform: compactViewport
           ? 'rotate(180deg) translateZ(0)'
           : 'rotate(180deg)',
@@ -153,7 +160,15 @@ export function EtherealShadow({
             aria-hidden="true"
           >
             <defs>
-              <filter id={filterId}>
+              <filter
+                id={filterId}
+                filterUnits="objectBoundingBox"
+                x="-0.55"
+                y="-0.55"
+                width="2.1"
+                height="2.1"
+                colorInterpolationFilters="sRGB"
+              >
                 <feTurbulence
                   result="undulation"
                   numOctaves="2"
@@ -194,8 +209,8 @@ export function EtherealShadow({
             backgroundColor: color,
             WebkitMaskImage: `url('${MASK_URL}')`,
             maskImage: `url('${MASK_URL}')`,
-            maskSize: sizing === 'stretch' ? '100% 100%' : 'cover',
-            WebkitMaskSize: sizing === 'stretch' ? '100% 100%' : 'cover',
+            maskSize: maskFill,
+            WebkitMaskSize: maskFill,
             maskRepeat: 'no-repeat',
             WebkitMaskRepeat: 'no-repeat',
             maskPosition: 'center',

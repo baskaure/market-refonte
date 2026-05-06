@@ -135,6 +135,8 @@ nav.nav-scrolled {
 .hero-bg-root {
   position: absolute;
   inset: 0;
+  width: 100%;
+  box-sizing: border-box;
   pointer-events: none;
   z-index: 0;
 }
@@ -1919,6 +1921,11 @@ footer::before {
     opacity: 0.95;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    overflow: hidden;
   }
 
   .hero h1 {
