@@ -1,5 +1,7 @@
+import { lazy, Suspense } from 'react'
 import { openCalendly } from '../constants'
-import DarkVeil from './DarkVeil'
+
+const DarkVeil = lazy(() => import('./DarkVeil'))
 
 export default function HeroFormation() {
   return (
@@ -23,14 +25,16 @@ export default function HeroFormation() {
         </div>
       </div>
       <div className="hero-darkveil">
-        <DarkVeil
-          hueShift={82}
-          noiseIntensity={0}
-          scanlineIntensity={0}
-          speed={0.5}
-          scanlineFrequency={0}
-          warpAmount={0}
-        />
+        <Suspense fallback={null}>
+          <DarkVeil
+            hueShift={82}
+            noiseIntensity={0}
+            scanlineIntensity={0}
+            speed={0.5}
+            scanlineFrequency={0}
+            warpAmount={0}
+          />
+        </Suspense>
       </div>
     </section>
   )

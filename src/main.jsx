@@ -1,7 +1,5 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import KingdomAds from './KingdomAds.jsx'
 import './index.css'
 
 const path =
@@ -9,10 +7,16 @@ const path =
     ? window.location.pathname
     : '/'
 
-const RootComponent = path.startsWith('/kingdomads') ? KingdomAds : App
+const isKingdomAds = path.startsWith('/kingdomads')
+
+const RootComponent = isKingdomAds
+  ? React.lazy(() => import('./KingdomAds.jsx'))
+  : React.lazy(() => import('./App.jsx'))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RootComponent />
+    <Suspense fallback={null}>
+      <RootComponent />
+    </Suspense>
   </React.StrictMode>,
 )

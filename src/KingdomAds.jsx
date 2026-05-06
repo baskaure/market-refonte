@@ -1,13 +1,15 @@
+import { lazy, Suspense } from 'react'
 import Nav from './components/Nav'
-import Footer from './components/Footer'
 import HeroFormation from './components/HeroFormation'
-import CTA from './components/CTA'
-import KingdomStats from './components/KingdomStats'
-import KingdomReviews from './components/KingdomReviews'
-import FormationSection from './components/FormationSection'
-import CertificationSection from './components/CertificationSection'
 import { useReveal } from './hooks/useReveal'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
+
+const FormationSection = lazy(() => import('./components/FormationSection'))
+const KingdomStats = lazy(() => import('./components/KingdomStats'))
+const KingdomReviews = lazy(() => import('./components/KingdomReviews'))
+const CTA = lazy(() => import('./components/CTA'))
+const CertificationSection = lazy(() => import('./components/CertificationSection'))
+const Footer = lazy(() => import('./components/Footer'))
 
 export default function KingdomAds() {
   useReveal()
@@ -20,14 +22,17 @@ export default function KingdomAds() {
       <Nav />
       <main>
         <HeroFormation />
-        <FormationSection />
-        <KingdomStats />
-        <KingdomReviews />
-        <CTA />
-        <CertificationSection />
+        <Suspense fallback={null}>
+          <FormationSection />
+          <KingdomStats />
+          <KingdomReviews />
+          <CTA />
+          <CertificationSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </>
   )
 }
-

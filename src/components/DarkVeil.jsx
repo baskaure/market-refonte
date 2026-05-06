@@ -94,9 +94,16 @@ export default function DarkVeil({
     const parent = canvas.parentElement
     if (!parent) return
 
+    const reduceMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: Math.min(window.devicePixelRatio || 1, 1.25),
       canvas,
+      antialias: false,
+      powerPreference: 'low-power',
     })
 
     const gl = renderer.gl
@@ -119,36 +126,117 @@ export default function DarkVeil({
 
     const mesh = new Mesh(gl, { geometry, program })
 
+    let pw = 0
+    let ph = 0
     const resize = () => {
       const w = parent.clientWidth
       const h = parent.clientHeight
+      if (w === pw && h === ph) return
+      pw = w
+      ph = h
       renderer.setSize(w * resolutionScale, h * resolutionScale)
       program.uniforms.uResolution.value.set(w, h)
       program.uniforms.uZoom.value = 1.0
     }
 
-    window.addEventListener('resize', resize)
+    let ro = null
+    if (typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(resize)
+      ro.observe(parent)
+    } else {
+      window.addEventListener('resize', resize)
+    }
     resize()
 
-    const start = performance.now()
     let frame = 0
+    let isVisible = true
+    let isTabVisible =
+      typeof document === 'undefined' ? true : document.visibilityState !== 'hidden'
+    let running = false
+    let elapsed = 0
+    let lastTs = performance.now()
 
-    const loop = () => {
-      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed
+    const renderFrame = () => {
+      const now = performance.now()
+      const delta = now - lastTs
+      lastTs = now
+      elapsed += delta
+
+      program.uniforms.uTime.value = (elapsed / 1000) * speed
       program.uniforms.uHueShift.value = hueShift
       program.uniforms.uNoise.value = noiseIntensity
       program.uniforms.uScan.value = scanlineIntensity
       program.uniforms.uScanFreq.value = scanlineFrequency
       program.uniforms.uWarp.value = warpAmount
       renderer.render({ scene: mesh })
+    }
+
+    const loop = () => {
+      renderFrame()
       frame = requestAnimationFrame(loop)
     }
 
-    loop()
+    const start = () => {
+      if (running) return
+      running = true
+      lastTs = performance.now()
+      frame = requestAnimationFrame(loop)
+    }
+
+    const stop = () => {
+      running = false
+      if (frame) {
+        cancelAnimationFrame(frame)
+        frame = 0
+      }
+    }
+
+    const sync = () => {
+      if (reduceMotion) {
+        if (running) stop()
+        renderFrame()
+        return
+      }
+      if (isVisible && isTabVisible) start()
+      else stop()
+    }
+
+    let io = null
+    if (typeof IntersectionObserver !== 'undefined') {
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            isVisible = entry.isIntersecting
+          }
+          sync()
+        },
+        { threshold: 0 },
+      )
+      io.observe(parent)
+    } else {
+      isVisible = true
+    }
+
+    const onVisibility = () => {
+      isTabVisible = document.visibilityState !== 'hidden'
+      sync()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+
+    sync()
 
     return () => {
-      cancelAnimationFrame(frame)
-      window.removeEventListener('resize', resize)
+      stop()
+      if (io) io.disconnect()
+      if (ro) ro.disconnect()
+      else window.removeEventListener('resize', resize)
+      document.removeEventListener('visibilitychange', onVisibility)
+      try {
+        const ext = gl.getExtension('WEBGL_lose_context')
+        if (ext) ext.loseContext()
+      } catch (e) {
+        // ignore
+      }
     }
   }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale])
 

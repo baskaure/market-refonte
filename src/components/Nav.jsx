@@ -10,7 +10,14 @@ export default function Nav() {
     <nav>
       <div className="nav-container">
         <div className="logo">
-          <img src="/img/Or_blanc-petit.png" alt="Kingdom Ads" />
+          <img
+            src="/img/Or_blanc-petit.png"
+            alt="Kingdom Ads"
+            width="160"
+            height="40"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
         {!isKingdomAds && (
           <ul className="nav-links">
