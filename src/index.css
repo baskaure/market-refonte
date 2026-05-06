@@ -1928,6 +1928,23 @@ footer::before {
     overflow: hidden;
   }
 
+  /* Ethereal hero : animation mobile WebKit (hue-rotate CSS, sans displacement SVG) */
+  @keyframes ethereal-mobile-hue {
+    from {
+      -webkit-filter: blur(2.5px) hue-rotate(0deg);
+      filter: blur(2.5px) hue-rotate(0deg);
+    }
+    to {
+      -webkit-filter: blur(2.5px) hue-rotate(360deg);
+      filter: blur(2.5px) hue-rotate(360deg);
+    }
+  }
+
+  .hero .ethereal-shadow .ethereal-glow-mobile {
+    -webkit-animation: ethereal-mobile-hue var(--ethereal-mobile-hue-duration, 14s) linear infinite;
+    animation: ethereal-mobile-hue var(--ethereal-mobile-hue-duration, 14s) linear infinite;
+  }
+
   .hero h1 {
     font-size: 1.9rem;
     line-height: 1.25;
@@ -2566,6 +2583,12 @@ footer::before {
 @media (prefers-reduced-motion: reduce) {
   .hero-bg-root {
     opacity: 0.9 !important;
+  }
+  .hero .ethereal-shadow .ethereal-glow-mobile {
+    -webkit-animation: none !important;
+    animation: none !important;
+    -webkit-filter: blur(2.5px) !important;
+    filter: blur(2.5px) !important;
   }
   .shiny-text-animated { animation: none !important; }
   .glass-video-card { animation: none !important; opacity: 1 !important; }

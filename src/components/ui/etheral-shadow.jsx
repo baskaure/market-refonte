@@ -27,7 +27,7 @@ function usePrefersReducedMotion() {
   )
 }
 
-/** Viewport étroit : même logique que le mode appareil F12 — filtre moins lourd, masque plein cadre. */
+/** Aligné sur le breakpoint mobile global (900px). */
 function useCompactHeroViewport() {
   return useSyncExternalStore(
     (onStoreChange) => {
@@ -50,8 +50,10 @@ function useInstanceId() {
 }
 
 /**
- * Fond type « ethereal shadow » (filtre SVG + masque).
- * Rotation 180° : la forme du masque est retournée (effet bas du hero).
+ * Fond « ethereal shadow » : masque + bruit.
+ * — Desktop : filtre SVG (turbulence + displacement), fluide.
+ * — Mobile WebKit : le displacement SVG rend souvent tout transparent ; on utilise
+ *   blur + hue-rotate CSS animé (même feeling lumineux, stable).
  */
 export function EtherealShadow({
   sizing = 'fill',
@@ -64,19 +66,27 @@ export function EtherealShadow({
   const filterId = useInstanceId()
   const reducedMotion = usePrefersReducedMotion()
   const compactViewport = useCompactHeroViewport()
-  const animationEnabled =
-    !reducedMotion && animation && animation.scale > 0
+
+  const animationWanted = Boolean(animation && animation.scale > 0)
+  const animationEnabled = !reducedMotion && animationWanted
+
+  /** Filtre « liquide » uniquement hors petit viewport (Safari iOS). */
+  const useLiquidSvgFilter = animationEnabled && !compactViewport
+
+  /** Petit écran : animation par CSS (classe + keyframes dans index.css). */
+  const useMobileCssHue = animationEnabled && compactViewport
 
   const feColorMatrixRef = useRef(null)
   const hueRotateMotionValue = useMotionValue(180)
   const hueRotateAnimationRef = useRef(null)
 
-  const displacementScaleRaw = animation
+  const displacementScaleRaw = animationWanted
     ? mapRange(animation.scale, 1, 100, 20, 100)
     : 0
   const displacementScale = compactViewport
     ? displacementScaleRaw * 0.5
     : displacementScaleRaw
+
   const animationDuration = animation
     ? mapRange(animation.speed, 1, 100, 1000, 50)
     : 1
@@ -90,12 +100,21 @@ export function EtherealShadow({
 
   const blurPx = compactViewport ? 2.5 : 4
 
-  /* cover rogne souvent le masque de façon asymétrique en portrait ; stretch = plein cadre sur mobile */
   const maskFill =
     sizing === 'stretch' || compactViewport ? '100% 100%' : 'cover'
 
+  const insetExpand = useLiquidSvgFilter
+    ? -displacementScale
+    : -Math.max(20, Math.ceil(blurPx * 5))
+
+  const innerFilter = useLiquidSvgFilter
+    ? `url(#${filterId}) blur(${blurPx}px)`
+    : useMobileCssHue
+      ? undefined
+      : `blur(${blurPx}px)`
+
   useEffect(() => {
-    if (!feColorMatrixRef.current || !animationEnabled) return
+    if (!useLiquidSvgFilter || !feColorMatrixRef.current) return
 
     if (hueRotateAnimationRef.current) {
       hueRotateAnimationRef.current.stop()
@@ -120,14 +139,13 @@ export function EtherealShadow({
         hueRotateAnimationRef.current.stop()
       }
     }
-  }, [animationEnabled, hueDuration, hueRotateMotionValue])
+  }, [useLiquidSvgFilter, hueDuration, hueRotateMotionValue])
 
   return (
     <div
       className={`ethereal-shadow ${className}`.trim()}
       style={{
-        /* Sur mobile, hidden + rotate + filtres WebKit peut rogner un côté ; le hero clip déjà */
-        overflow: compactViewport ? 'visible' : 'hidden',
+        overflow: 'hidden',
         position: 'relative',
         width: '100%',
         height: '100%',
@@ -142,33 +160,27 @@ export function EtherealShadow({
         transformOrigin: 'center center',
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
+        ...(useMobileCssHue
+          ? { '--ethereal-mobile-hue-duration': `${hueDuration}s` }
+          : {}),
         ...style,
       }}
     >
       <div
         style={{
           position: 'absolute',
-          inset: -displacementScale,
-          filter: animationEnabled
-            ? `url(#${filterId}) blur(${blurPx}px)`
-            : 'none',
+          inset: insetExpand,
+          filter: innerFilter,
+          WebkitFilter: innerFilter,
         }}
       >
-        {animationEnabled && (
+        {useLiquidSvgFilter && (
           <svg
             style={{ position: 'absolute', width: 0, height: 0 }}
             aria-hidden="true"
           >
             <defs>
-              <filter
-                id={filterId}
-                filterUnits="objectBoundingBox"
-                x="-0.55"
-                y="-0.55"
-                width="2.1"
-                height="2.1"
-                colorInterpolationFilters="sRGB"
-              >
+              <filter id={filterId} colorInterpolationFilters="sRGB">
                 <feTurbulence
                   result="undulation"
                   numOctaves="2"
@@ -205,6 +217,7 @@ export function EtherealShadow({
           </svg>
         )}
         <div
+          className={useMobileCssHue ? 'ethereal-glow-mobile' : undefined}
           style={{
             backgroundColor: color,
             WebkitMaskImage: `url('${MASK_URL}')`,
