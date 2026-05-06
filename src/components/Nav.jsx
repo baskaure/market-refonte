@@ -51,7 +51,15 @@ export default function Nav() {
             <li><a href="#process">Processus</a></li>
             <li><a href="#testimonials">Témoignages</a></li>
             <li><a href="#team">Équipe</a></li>
-            <li><a href="#cta">Appel</a></li>
+            <li>
+              <button
+                type="button"
+                className="nav-links-calendly"
+                onClick={openCalendly}
+              >
+                Appel
+              </button>
+            </li>
           </ul>
         )}
         <button type="button" onClick={openCalendly} className="cta-nav">Démarrer</button>

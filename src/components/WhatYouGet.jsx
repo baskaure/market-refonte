@@ -1,6 +1,7 @@
 import PixelCard from './PixelCard'
 import { TextAnimate } from './ui/text-animate'
 import { TextReveal } from './ui/text-reveal'
+import { openCalendly } from '../constants'
 
 export default function WhatYouGet() {
   return (
@@ -24,10 +25,14 @@ export default function WhatYouGet() {
               Vous vous concentrez sur la vente. Nous nous concentrons sur la qualité et la régularité des opportunités.
             </TextReveal>
             <div className="what-cta">
-              <a href="#cta" className="github-btn">
+              <button
+                type="button"
+                onClick={openCalendly}
+                className="github-btn calendly-btn"
+              >
                 Tester votre marché
                 <span className="arrow" aria-hidden="true" />
-              </a>
+              </button>
             </div>
           </div>
         </PixelCard>
