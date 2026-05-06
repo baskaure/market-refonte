@@ -20,8 +20,6 @@ function App() {
 
   return (
     <>
-      <div className="noise" />
-      <div className="particles" />
       <Nav />
       <Hero />
       <Suspense fallback={null}>

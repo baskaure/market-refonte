@@ -1,5 +1,5 @@
-import React from 'react'
-import { motion } from 'motion/react'
+import React, { useRef } from 'react'
+import { motion, useInView } from 'motion/react'
 
 function getInitials(name = '') {
   return name
@@ -33,10 +33,13 @@ function Avatar({ image, name }) {
 }
 
 export function TestimonialsColumn({ className = '', testimonials = [], duration = 10 }) {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { margin: '200px 0px', once: false })
+
   return (
-    <div className={`testimonials-col ${className}`}>
+    <div className={`testimonials-col ${className}`} ref={containerRef}>
       <motion.div
-        animate={{ translateY: '-50%' }}
+        animate={isInView ? { translateY: '-50%' } : false}
         transition={{
           duration,
           repeat: Infinity,

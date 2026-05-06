@@ -17,8 +17,6 @@ export default function KingdomAds() {
 
   return (
     <>
-      <div className="noise" />
-      <div className="particles" />
       <Nav />
       <main>
         <HeroFormation />
