@@ -1,7 +1,6 @@
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 import Nav from './components/Nav'
 import HeroFormation from './components/HeroFormation'
-import { LazyOnVisible } from './components/ui/lazy-on-visible'
 import { useReveal } from './hooks/useReveal'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
 
@@ -21,25 +20,17 @@ export default function KingdomAds() {
       <Nav />
       <main>
         <HeroFormation />
-        <LazyOnVisible minHeight={700}>
+        <Suspense fallback={null}>
           <FormationSection />
-        </LazyOnVisible>
-        <LazyOnVisible minHeight={500}>
           <KingdomStats />
-        </LazyOnVisible>
-        <LazyOnVisible minHeight={1000}>
           <KingdomReviews />
-        </LazyOnVisible>
-        <LazyOnVisible minHeight={900}>
           <CTA />
-        </LazyOnVisible>
-        <LazyOnVisible minHeight={500}>
           <CertificationSection />
-        </LazyOnVisible>
+        </Suspense>
       </main>
-      <LazyOnVisible minHeight={300}>
+      <Suspense fallback={null}>
         <Footer />
-      </LazyOnVisible>
+      </Suspense>
     </>
   )
 }

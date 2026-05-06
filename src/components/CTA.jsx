@@ -1,52 +1,41 @@
-import { useEffect, useRef, useState } from 'react'
-import { CALENDLY_URL } from '../constants'
+import { useEffect, useRef } from 'react'
+import { getCalendlyUrl } from '../constants'
 import { loadCalendly } from '../utils/loadCalendly'
 import { TextAnimate } from './ui/text-animate'
 
 export default function CTA() {
   const widgetRef = useRef(null)
-  const [shouldLoad, setShouldLoad] = useState(false)
 
   useEffect(() => {
-    const node = widgetRef.current
-    if (!node) return
-
-    if (typeof IntersectionObserver === 'undefined') {
-      setShouldLoad(true)
-      return
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setShouldLoad(true)
-          io.disconnect()
-        }
-      },
-      { rootMargin: '300px' },
-    )
-    io.observe(node)
-    return () => io.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!shouldLoad) return
     let cancelled = false
 
-    loadCalendly().then((Calendly) => {
-      if (cancelled || !Calendly || !widgetRef.current) return
-      Calendly.initInlineWidget({
-        url: CALENDLY_URL,
-        parentElement: widgetRef.current,
-      })
-    }).catch((e) => {
-      console.error('Calendly inline widget failed to load', e)
-    })
+    const mountInline = () => {
+      loadCalendly()
+        .then((Calendly) => {
+          if (cancelled || !Calendly || !widgetRef.current) return
+          if (widgetRef.current.querySelector('iframe')) return
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              if (cancelled || !widgetRef.current) return
+              if (widgetRef.current.querySelector('iframe')) return
+              Calendly.initInlineWidget({
+                url: getCalendlyUrl(),
+                parentElement: widgetRef.current,
+              })
+            })
+          })
+        })
+        .catch((e) => {
+          console.error('Calendly inline widget failed to load', e)
+        })
+    }
+
+    mountInline()
 
     return () => {
       cancelled = true
     }
-  }, [shouldLoad])
+  }, [])
 
   return (
     <section className="section" id="cta">
