@@ -2,11 +2,13 @@ import { useEffect } from 'react'
 
 export function useReveal() {
   useEffect(() => {
-    const elements = document.querySelectorAll('.reveal')
     if (!('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('reveal-visible'))
+      document
+        .querySelectorAll('.reveal')
+        .forEach((el) => el.classList.add('reveal-visible'))
       return
     }
+
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -18,7 +20,24 @@ export function useReveal() {
       },
       { threshold: 0.15 }
     )
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+
+    const observeAll = () => {
+      document
+        .querySelectorAll('.reveal:not(.reveal-visible)')
+        .forEach((el) => observer.observe(el))
+    }
+
+    observeAll()
+
+    const mutationObserver = new MutationObserver(observeAll)
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+
+    return () => {
+      observer.disconnect()
+      mutationObserver.disconnect()
+    }
   }, [])
 }
