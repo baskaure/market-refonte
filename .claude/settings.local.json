@@ -9,7 +9,17 @@
       "Bash(node -e \"console.log\\(require\\('./node_modules/motion/package.json'\\).version\\)\")",
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4173/)",
       "Read(//tmp/**)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Read(//usr/bin/**)",
+      "Bash(command -v chromium chromium-browser google-chrome google-chrome-stable)",
+      "Bash(xargs -n1 basename)",
+      "Bash(pkill -f \"vite preview\")",
+      "Bash(npx --yes playwright@latest install chromium)",
+      "Bash(npm ls *)",
+      "Bash(npm i *)",
+      "Bash(node scripts/diag-calendly.mjs)",
+      "Bash(npm remove *)",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).devDependencies,null,2\\)\\)\")"
     ]
   }
 }

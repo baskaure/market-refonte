@@ -9,13 +9,34 @@ function findCalendlyScript() {
   )
 }
 
+/**
+ * Injecte la feuille de style Calendly et résout quand elle est *chargée*.
+ * Indispensable : Calendly dimensionne l'iframe inline et positionne le popup
+ * via ce CSS. Si on initialise le widget avant que le CSS soit appliqué,
+ * l'iframe se rend avec des dimensions nulles → rien ne s'affiche.
+ */
 function ensureStylesheet() {
-  if (document.querySelector('link[data-calendly], link[href*="calendly.com/assets/external/widget.css"]')) return
-  const link = document.createElement('link')
-  link.rel = 'stylesheet'
-  link.href = CALENDLY_CSS
-  link.dataset.calendly = 'true'
-  document.head.appendChild(link)
+  const existing = document.querySelector(
+    'link[data-calendly], link[href*="calendly.com/assets/external/widget.css"]',
+  )
+  if (existing) {
+    // Déjà présent : on attend son chargement si ce n'est pas encore fait.
+    if (existing.sheet) return Promise.resolve()
+    return new Promise((resolve) => {
+      existing.addEventListener('load', () => resolve(), { once: true })
+      existing.addEventListener('error', () => resolve(), { once: true })
+    })
+  }
+
+  return new Promise((resolve) => {
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = CALENDLY_CSS
+    link.dataset.calendly = 'true'
+    link.addEventListener('load', () => resolve(), { once: true })
+    link.addEventListener('error', () => resolve(), { once: true })
+    document.head.appendChild(link)
+  })
 }
 
 function ensureScript() {
@@ -45,20 +66,24 @@ function waitForCalendlyGlobal(resolve, reject) {
 
 export function loadCalendly() {
   if (typeof window === 'undefined') return Promise.resolve(null)
-  if (window.Calendly) return Promise.resolve(window.Calendly)
   if (calendlyPromise) return calendlyPromise
 
   calendlyPromise = new Promise((resolve, reject) => {
-    ensureStylesheet()
+    // On charge le CSS et le JS en parallèle, mais on ne résout
+    // qu'une fois les DEUX prêts (CSS appliqué + global Calendly disponible).
+    const stylesheetReady = ensureStylesheet()
     ensureScript()
 
-    waitForCalendlyGlobal(
-      (api) => resolve(api),
-      (err) => {
+    const globalReady = window.Calendly
+      ? Promise.resolve(window.Calendly)
+      : new Promise((res, rej) => waitForCalendlyGlobal(res, rej))
+
+    Promise.all([globalReady, stylesheetReady])
+      .then(([api]) => resolve(api))
+      .catch((err) => {
         calendlyPromise = null
         reject(err)
-      },
-    )
+      })
   })
 
   return calendlyPromise

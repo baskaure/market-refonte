@@ -1724,7 +1724,13 @@ nav.nav-scrolled {
   margin: 0 auto;
 }
 
-.calendly-inline-widget {
+/* Conteneur de l'embed inline Calendly.
+   NB : on n'utilise PAS la classe `calendly-inline-widget` ici, sinon le
+   widget.js de Calendly auto-initialise l'élément au chargement et lit un
+   `data-url` absent → `Cannot read properties of null (reading 'split')`,
+   ce qui empêche `window.Calendly` d'être défini. On initialise nous-mêmes
+   via initInlineWidget({ parentElement }). */
+.calendly-inline-host {
   position: relative;
   z-index: 2;
 }

@@ -30,10 +30,30 @@ export default function CTA() {
         })
     }
 
-    mountInline()
+    const el = widgetRef.current
+    // Pas d'IntersectionObserver (vieux navigateurs) : on charge directement.
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      mountInline()
+      return () => {
+        cancelled = true
+      }
+    }
+
+    // On ne charge Calendly que lorsque le CTA approche du viewport.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect()
+          mountInline()
+        }
+      },
+      { rootMargin: '600px' },
+    )
+    observer.observe(el)
 
     return () => {
       cancelled = true
+      observer.disconnect()
     }
   }, [])
 
@@ -48,7 +68,7 @@ export default function CTA() {
       <div className="calendly-wrapper">
         <div
           ref={widgetRef}
-          className="calendly-inline-widget"
+          className="calendly-inline-host"
           style={{ minWidth: '320px', height: '700px' }}
         />
       </div>
