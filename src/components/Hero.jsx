@@ -1,16 +1,18 @@
 import { openCalendly } from '../constants'
-import { EtherealShadow } from './ui/etheral-shadow'
 
 export default function Hero() {
   return (
     <section className="hero reveal reveal-delay-1">
       <div className="hero-bg-root" aria-hidden="true">
-        <EtherealShadow
-          color="rgba(212, 175, 55, 0.62)"
-          animation={{ scale: 100, speed: 90 }}
-          noise={{ opacity: 0.42, scale: 1.2 }}
-          sizing="fill"
-        />
+        <div className="hero-shapes-glow" />
+        <div className="hero-shapes">
+          <div className="hero-shape hero-shape-1"><div className="hero-shape-inner" /></div>
+          <div className="hero-shape hero-shape-2"><div className="hero-shape-inner" /></div>
+          <div className="hero-shape hero-shape-3"><div className="hero-shape-inner" /></div>
+          <div className="hero-shape hero-shape-4"><div className="hero-shape-inner" /></div>
+          <div className="hero-shape hero-shape-5"><div className="hero-shape-inner" /></div>
+        </div>
+        <div className="hero-shapes-vignette" />
       </div>
 
       <div className="hero-content">

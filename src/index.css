@@ -160,6 +160,141 @@ nav.nav-scrolled {
   z-index: 0;
 }
 
+/* --- Formes géométriques flottantes du hero --- */
+.hero-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-shapes-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.12),
+    transparent 55%,
+    rgba(184, 134, 11, 0.1)
+  );
+  filter: blur(40px);
+}
+
+.hero-shapes-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #000 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-shape {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(-150px) rotate(calc(var(--rotate, 0deg) - 15deg));
+  animation: hero-shape-in 2.4s cubic-bezier(0.23, 0.86, 0.39, 0.96) var(--delay, 0s) forwards;
+}
+
+@keyframes hero-shape-in {
+  from {
+    opacity: 0;
+    transform: translateY(-150px) rotate(calc(var(--rotate, 0deg) - 15deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+}
+
+.hero-shape-inner {
+  position: relative;
+  animation: hero-shape-float 12s ease-in-out infinite;
+}
+
+@keyframes hero-shape-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-shape {
+    animation: none;
+    opacity: 1;
+    transform: rotate(var(--rotate, 0deg));
+  }
+  .hero-shape-inner { animation: none; }
+}
+
+.hero-shape-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--shape-gradient, rgba(212, 175, 55, 0.3)),
+    transparent
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.18);
+}
+
+.hero-shape-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.25),
+    transparent 70%
+  );
+}
+
+.hero-shape-1 { left: -5%; top: 20%; --rotate: 12deg; --delay: 0.3s; }
+.hero-shape-2 { right: 0%; top: 75%; --rotate: -15deg; --delay: 0.5s; }
+.hero-shape-3 { left: 10%; bottom: 10%; --rotate: -8deg; --delay: 0.4s; }
+.hero-shape-4 { right: 20%; top: 15%; --rotate: 20deg; --delay: 0.6s; }
+.hero-shape-5 { left: 25%; top: 10%; --rotate: -25deg; --delay: 0.7s; }
+
+.hero-shape-1 .hero-shape-inner { width: 600px; height: 140px; }
+.hero-shape-2 .hero-shape-inner { width: 500px; height: 120px; }
+.hero-shape-3 .hero-shape-inner { width: 300px; height: 80px; }
+.hero-shape-4 .hero-shape-inner { width: 200px; height: 60px; }
+.hero-shape-5 .hero-shape-inner { width: 150px; height: 40px; }
+
+.hero-shape-3 .hero-shape-inner::before { background: linear-gradient(to right, rgba(184, 134, 11, 0.32), transparent); }
+.hero-shape-5 .hero-shape-inner::before { background: linear-gradient(to right, rgba(240, 220, 130, 0.28), transparent); }
+
+/* Tablette */
+@media (max-width: 900px) {
+  .hero-shape-1 .hero-shape-inner { width: 380px; height: 90px; }
+  .hero-shape-2 .hero-shape-inner { width: 320px; height: 80px; }
+  .hero-shape-3 .hero-shape-inner { width: 200px; height: 55px; }
+  .hero-shape-4 .hero-shape-inner { width: 140px; height: 42px; }
+  .hero-shape-5 .hero-shape-inner { width: 110px; height: 32px; }
+
+  .hero-shape-1 { left: -15%; top: 12%; }
+  .hero-shape-2 { right: -12%; top: 72%; }
+  .hero-shape-3 { left: -5%; bottom: 8%; }
+  .hero-shape-4 { right: 5%; top: 8%; }
+  .hero-shape-5 { left: 8%; top: 6%; }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .hero-shape-1 .hero-shape-inner { width: 260px; height: 64px; }
+  .hero-shape-2 .hero-shape-inner { width: 220px; height: 58px; }
+  .hero-shape-3 .hero-shape-inner { width: 150px; height: 42px; }
+  .hero-shape-4 .hero-shape-inner { width: 110px; height: 34px; }
+  .hero-shape-5 .hero-shape-inner { width: 90px; height: 26px; }
+}
+
 .hero-content {
   max-width: 900px;
   position: relative;
@@ -1937,7 +2072,7 @@ footer::before {
   }
 
   .hero-bg-root {
-    opacity: 0.7;
+    opacity: 0.9;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     width: 100%;
