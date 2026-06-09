@@ -1,6 +1,10 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import { initLeadTracking } from './utils/metaPixel'
+
+// Écoute la confirmation de RDV Calendly pour déclencher l'événement Meta « Lead ».
+initLeadTracking()
 
 const path =
   typeof window !== 'undefined' && window.location && window.location.pathname
