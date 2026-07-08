@@ -51,6 +51,7 @@ export default function Nav() {
             <li><a href="#process">Processus</a></li>
             <li><a href="#testimonials">Témoignages</a></li>
             <li><a href="#team">Équipe</a></li>
+            <li><a href="/blog/">Blog</a></li>
             <li>
               <button
                 type="button"

@@ -42,6 +42,49 @@
 
   <link rel="icon" type="image/png" href="/img/logo.png" />
 
+  <!-- Données structurées (SEO/GEO) : identité de l'agence pour Google et les moteurs IA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.marketwins.fr/#organization",
+        "name": "Marketwins",
+        "alternateName": "Kingdom Ads",
+        "url": "https://www.marketwins.fr/",
+        "logo": "https://www.marketwins.fr/img/logo.webp",
+        "email": "contact@kingdomads.fr",
+        "description": "Agence française d'acquisition payante (Meta Ads, Google Ads, LinkedIn Ads). Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance, via des tests cadrés et sans engagement long terme. 8 ans d'expérience, plus de 200 entreprises accompagnées.",
+        "founder": [
+          { "@type": "Person", "name": "Alexandre Adamsha" },
+          { "@type": "Person", "name": "William Adamsha" }
+        ],
+        "knowsAbout": ["Meta Ads", "Google Ads", "LinkedIn Ads", "Génération de leads qualifiés", "Acquisition payante"],
+        "areaServed": "FR"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.marketwins.fr/#website",
+        "url": "https://www.marketwins.fr/",
+        "name": "Marketwins",
+        "inLanguage": "fr-FR",
+        "publisher": { "@id": "https://www.marketwins.fr/#organization" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.marketwins.fr/#service",
+        "name": "Marketwins — Génération d'opportunités commerciales qualifiées",
+        "url": "https://www.marketwins.fr/",
+        "parentOrganization": { "@id": "https://www.marketwins.fr/#organization" },
+        "description": "Campagnes publicitaires Meta, Google et LinkedIn validées par un test payant limité : appel de cadrage gratuit, test cadré avec critères de succès chiffrés, puis décision de scaler. Aucun engagement long terme.",
+        "areaServed": "FR",
+        "priceRange": "Sur devis"
+      }
+    ]
+  }
+  </script>
+
   <link
     rel="preload"
     as="image"

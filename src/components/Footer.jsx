@@ -15,6 +15,7 @@ export default function Footer() {
           <a href="#process">Processus</a>
           <a href="#testimonials">Témoignages</a>
           <a href="#team">Équipe</a>
+          <a href="/blog/">Blog</a>
         </div>
         <div className="footer-section">
           <h4>Contact</h4>

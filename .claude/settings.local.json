@@ -19,7 +19,8 @@
       "Bash(npm i *)",
       "Bash(node scripts/diag-calendly.mjs)",
       "Bash(npm remove *)",
-      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).devDependencies,null,2\\)\\)\")"
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).devDependencies,null,2\\)\\)\")",
+      "Bash(node *)"
     ]
   }
 }
