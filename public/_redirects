@@ -1,3 +1,4 @@
-/kingdomads    /index.html   200
-/*             /index.html   200
-
+# Toutes les pages du site existent en fichiers statiques dans dist/
+# (/, /kingdomads/, /blog/…). Une URL inconnue renvoie donc un vrai 404
+# (statut correct pour le SEO — plus de « soft 404 » en servant l'accueil).
+/*    /404.html    404

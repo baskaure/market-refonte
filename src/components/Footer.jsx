@@ -20,11 +20,6 @@ export default function Footer() {
         <div className="footer-section">
           <h4>Contact</h4>
           <a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a>
-          <div className="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">YouTube</a>
-          </div>
         </div>
       </div>
       <div className="footer-bottom">

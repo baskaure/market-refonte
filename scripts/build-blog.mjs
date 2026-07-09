@@ -46,6 +46,8 @@ const ORG = {
 /* ------------------------------------------------------------------ style */
 
 const CSS = `
+@font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;src:url('/fonts/outfit-latin-var.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@view-transition{navigation:auto}
 :root{--gold:#d4af37;--gold-light:#f4e4b5;--gold-dark:#b8941f;--black:#0a0a0a;--gray:#9a9a9a;--text:#e8e8e8}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -110,8 +112,12 @@ footer a{color:var(--gray)}footer a:hover{color:var(--gold)}
 const PIXEL = `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${PIXEL_ID}');fbq('track','PageView');</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1" alt=""/></noscript>`
 
-const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">`
+// Police Outfit auto-hébergée (variable, 32 Ko) — zéro requête vers Google Fonts.
+const FONTS = `<link rel="preload" as="font" type="font/woff2" href="/fonts/outfit-latin-var.woff2" crossorigin>`
+
+// Prefetch des liens internes au survol/visibilité (Speculation Rules API,
+// enhancement progressif — ignoré par les navigateurs non compatibles).
+const SPECULATION = `<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/img/*"}}]},"eagerness":"moderate"}]}</script>`
 
 const NAV = `<nav class="nav"><div class="nav-inner">
 <a href="/" aria-label="Marketwins — accueil"><picture><source type="image/webp" srcset="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x"><img src="/img/Or_blanc-petit-160.webp" alt="Marketwins" width="160" height="40"></picture></a>
@@ -132,6 +138,7 @@ const head = ({ title, description, url, type = 'article', published, modified }
 <meta name="description" content="${esc(description)}">
 <meta name="author" content="Marketwins">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="theme-color" content="#060606">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="${type}">
 <meta property="og:locale" content="fr_FR">
@@ -139,13 +146,21 @@ const head = ({ title, description, url, type = 'article', published, modified }
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${SITE}/img/logo.webp">
+<meta property="og:image" content="${SITE}/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Marketwins — des opportunités commerciales qualifiées via Meta Ads, Google Ads et LinkedIn Ads">
 ${published ? `<meta property="article:published_time" content="${published}">\n<meta property="article:modified_time" content="${modified || published}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${SITE}/img/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="icon" type="image/png" href="/img/logo.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 ${FONTS}
+${SPECULATION}
 ${PIXEL}
 <style>${CSS}</style>`
 
@@ -167,7 +182,7 @@ function articlePage(a, all) {
       datePublished: a.datePublished,
       dateModified: a.dateModified || a.datePublished,
       mainEntityOfPage: url,
-      image: `${SITE}/img/logo.webp`,
+      image: `${SITE}/img/og-image.jpg`,
       author: { '@id': `${SITE}/#organization` },
       publisher: { '@id': `${SITE}/#organization` },
       articleSection: a.category,
@@ -288,7 +303,7 @@ ${FOOTER}
 function sitemap(all) {
   const urls = [
     { loc: `${SITE}/`, priority: '1.0', changefreq: 'monthly' },
-    { loc: `${SITE}/kingdomads`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${SITE}/kingdomads/`, priority: '0.8', changefreq: 'monthly' },
     { loc: `${SITE}/blog/`, priority: '0.8', changefreq: 'weekly' },
     ...all.map((a) => ({
       loc: `${SITE}/blog/${a.slug}/`,

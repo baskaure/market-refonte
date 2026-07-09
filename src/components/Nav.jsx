@@ -37,7 +37,7 @@ export default function Nav() {
             />
             <img
               src="/img/Or_blanc-petit-160.webp"
-              alt="Kingdom Ads"
+              alt="Marketwins"
               width="160"
               height="40"
               decoding="async"

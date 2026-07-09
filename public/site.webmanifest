@@ -1,0 +1,14 @@
+{
+  "name": "Marketwins — Opportunités commerciales qualifiées",
+  "short_name": "Marketwins",
+  "description": "Agence d'acquisition payante : des opportunités commerciales qualifiées à un coût connu à l'avance.",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#060606",
+  "theme_color": "#060606",
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
