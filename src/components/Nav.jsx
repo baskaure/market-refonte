@@ -33,12 +33,12 @@ export default function Nav() {
           <picture>
             <source
               type="image/webp"
-              srcSet="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x"
+              srcSet="/img/Or_blanc-nav.webp 1x, /img/Or_blanc-nav-2x.webp 2x"
             />
             <img
-              src="/img/Or_blanc-petit-160.webp"
+              src="/img/Or_blanc-nav.webp"
               alt="Marketwins"
-              width="160"
+              width="35"
               height="40"
               decoding="async"
               fetchpriority="high"

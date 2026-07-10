@@ -3,7 +3,9 @@ import { EtherealShadow } from './ui/etheral-shadow'
 
 export default function HeroFormation() {
   return (
-    <section className="hero reveal reveal-delay-1">
+    // Pas de classe reveal : le hero statique de kingdomads/index.html est déjà
+    // affiché — le masquer au montage de React provoquerait un flash.
+    <section className="hero">
       <div className="hero-bg-root" aria-hidden="true">
         <EtherealShadow
           color="rgba(212, 175, 55, 0.62)"

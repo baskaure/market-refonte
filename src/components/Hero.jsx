@@ -2,7 +2,9 @@ import { openCalendly } from '../constants'
 
 export default function Hero() {
   return (
-    <section className="hero reveal reveal-delay-1">
+    // Pas de classe reveal ici : le hero est déjà affiché par le HTML statique
+    // de index.html — le masquer au montage de React provoquerait un flash.
+    <section className="hero">
       <div className="hero-bg-root" aria-hidden="true">
         <div className="hero-shapes-glow" />
         <div className="hero-shapes">
@@ -32,7 +34,7 @@ export default function Hero() {
 
         <div className="hero-buttons">
           <button type="button" onClick={openCalendly} className="btn-primary">
-            Démarrer le test
+            Démarrer le test <span className="arr" aria-hidden="true">→</span>
           </button>
           <a href="#process" className="btn-secondary">Voir le déroulé</a>
         </div>

@@ -17,7 +17,10 @@ function blogDev() {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const url = (req.url || '').split('?')[0]
-        if (url !== '/blog' && !url.startsWith('/blog/')) return next()
+        const isStaticPage = ['/blog', '/confidentialite', '/mentions-legales'].some(
+          (p) => url === p || url.startsWith(`${p}/`),
+        )
+        if (!isStaticPage) return next()
         try {
           execFileSync('node', ['scripts/build-blog.mjs'], { cwd: __dirname })
         } catch (e) {

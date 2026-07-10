@@ -3,17 +3,17 @@
      scripts/build-blog.mjs à chaque build (avec les articles du blog). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.marketwins.fr/</loc>
+    <loc>https://marketwins.pro/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.marketwins.fr/kingdomads/</loc>
+    <loc>https://marketwins.pro/kingdomads/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.marketwins.fr/blog/</loc>
+    <loc>https://marketwins.pro/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

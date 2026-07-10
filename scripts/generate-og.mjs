@@ -37,10 +37,10 @@ const ogSvg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg"
   <rect width="1200" height="630" fill="url(#glow)"/>
   <rect x="28" y="28" width="1144" height="574" rx="18" fill="none" stroke="#d4af37" stroke-opacity="0.35" stroke-width="2"/>
   <text x="600" y="300" text-anchor="middle" font-family="Outfit, DejaVu Sans, sans-serif" font-weight="700" font-size="64" fill="#ffffff">On ne vend pas des leads.</text>
-  <text x="600" y="378" text-anchor="middle" font-family="Outfit, DejaVu Sans, sans-serif" font-weight="700" font-size="52" fill="#d4af37">Des opportunités commerciales qualifiées</text>
+  <text x="600" y="374" text-anchor="middle" font-family="Outfit, DejaVu Sans, sans-serif" font-weight="700" font-size="44" fill="#d4af37">Des opportunités commerciales qualifiées</text>
   <rect x="450" y="425" width="300" height="2" fill="url(#goldline)"/>
   <text x="600" y="480" text-anchor="middle" font-family="Outfit, DejaVu Sans, sans-serif" font-weight="400" font-size="28" fill="#b5b5b5">Meta Ads · Google Ads · LinkedIn Ads — à un coût connu à l'avance</text>
-  <text x="600" y="560" text-anchor="middle" font-family="Outfit, DejaVu Sans, sans-serif" font-weight="400" font-size="24" fill="#8a8a8a" letter-spacing="3">marketwins.fr</text>
+  <text x="600" y="560" text-anchor="middle" font-family="Outfit, DejaVu Sans, sans-serif" font-weight="400" font-size="24" fill="#8a8a8a" letter-spacing="3">marketwins.pro</text>
 </svg>`
 
 async function buildOg() {

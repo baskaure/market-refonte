@@ -4,35 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel : stub fbq (les événements sont mis en file d'attente), le
+       script Meta est chargé à la première interaction ou 3 s après le
+       chargement — même mécanique que index.html. -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
   fbq('init', '2073138586484176');
   fbq('track', 'PageView');
+  (function(){
+    var done=false;
+    function load(){if(done)return;done=true;
+      var t=document.createElement('script');t.async=true;
+      t.src='https://connect.facebook.net/en_US/fbevents.js';
+      document.head.appendChild(t);}
+    ['pointerdown','keydown','touchstart','scroll'].forEach(function(e){
+      addEventListener(e,load,{once:true,passive:true});});
+    addEventListener('load',function(){setTimeout(load,3000)});
+  })();
   </script>
   <!-- End Meta Pixel Code -->
 
-  <title>Formation Kingdom Ads — Maîtrisez l'acquisition payante | Marketwins</title>
-  <meta name="description" content="Formation à la génération d'opportunités commerciales : Meta Ads, Google Ads, LinkedIn Ads. Plus de 2 800 participants formés depuis 2018, 9,23/10 de satisfaction moyenne. Programmes et accompagnement opérationnel." />
+  <title>Formation Kingdom Ads — Acquisition payante | Marketwins</title>
+  <meta name="description" content="Formation à l'acquisition payante (Meta, Google, LinkedIn Ads) : plus de 2 800 participants formés depuis 2018, 9,23/10 de satisfaction moyenne." />
   <meta name="author" content="Marketwins" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#060606" />
-  <link rel="canonical" href="https://www.marketwins.fr/kingdomads/" />
+  <link rel="canonical" href="https://marketwins.pro/kingdomads/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Marketwins" />
   <meta property="og:title" content="Formation Kingdom Ads — Maîtrisez l'acquisition payante" />
   <meta property="og:description" content="On vous forme à faire ce que l'on fait pour nos clients : génération d'opportunités commerciales de A à Z. Plus de 2 800 participants formés depuis 2018." />
-  <meta property="og:url" content="https://www.marketwins.fr/kingdomads/" />
-  <meta property="og:image" content="https://www.marketwins.fr/img/og-image.jpg" />
+  <meta property="og:url" content="https://marketwins.pro/kingdomads/" />
+  <meta property="og:image" content="https://marketwins.pro/img/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Kingdom Ads Formation — acquisition payante par Marketwins" />
@@ -40,7 +47,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Formation Kingdom Ads — Maîtrisez l'acquisition payante" />
   <meta name="twitter:description" content="On vous forme à faire ce que l'on fait pour nos clients : génération d'opportunités commerciales de A à Z." />
-  <meta name="twitter:image" content="https://www.marketwins.fr/img/og-image.jpg" />
+  <meta name="twitter:image" content="https://marketwins.pro/img/og-image.jpg" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png" />
   <link rel="icon" type="image/png" href="/img/logo.png" />
@@ -54,20 +61,20 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.marketwins.fr/#organization",
+        "@id": "https://marketwins.pro/#organization",
         "name": "Marketwins",
         "alternateName": "Kingdom Ads",
-        "url": "https://www.marketwins.fr/",
-        "logo": "https://www.marketwins.fr/img/logo.webp",
+        "url": "https://marketwins.pro/",
+        "logo": "https://marketwins.pro/img/logo.webp",
         "email": "contact@kingdomads.fr"
       },
       {
         "@type": "Service",
-        "@id": "https://www.marketwins.fr/kingdomads/#formation",
+        "@id": "https://marketwins.pro/kingdomads/#formation",
         "serviceType": "Formation à l'acquisition payante",
         "name": "Kingdom Ads Formation",
-        "url": "https://www.marketwins.fr/kingdomads/",
-        "provider": { "@id": "https://www.marketwins.fr/#organization" },
+        "url": "https://marketwins.pro/kingdomads/",
+        "provider": { "@id": "https://marketwins.pro/#organization" },
         "description": "Programmes de formation, accompagnement opérationnel et partage de frameworks pour maîtriser la génération d'opportunités commerciales (Meta Ads, Google Ads, LinkedIn Ads) de A à Z. Plus de 2 800 participants formés depuis 2018.",
         "areaServed": "FR",
         "inLanguage": "fr-FR",
@@ -81,8 +88,8 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.marketwins.fr/" },
-          { "@type": "ListItem", "position": 2, "name": "Formation Kingdom Ads", "item": "https://www.marketwins.fr/kingdomads/" }
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://marketwins.pro/" },
+          { "@type": "ListItem", "position": 2, "name": "Formation Kingdom Ads", "item": "https://marketwins.pro/kingdomads/" }
         ]
       }
     ]
@@ -93,8 +100,8 @@
     rel="preload"
     as="image"
     type="image/webp"
-    href="/img/Or_blanc-petit-160.webp"
-    imagesrcset="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x"
+    href="/img/Or_blanc-nav.webp"
+    imagesrcset="/img/Or_blanc-nav.webp 1x, /img/Or_blanc-nav-2x.webp 2x"
     fetchpriority="high"
   />
 
@@ -115,8 +122,8 @@
       <div class="nav-container">
         <div class="logo">
           <picture>
-            <source type="image/webp" srcset="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x" />
-            <img src="/img/Or_blanc-petit-160.webp" alt="Marketwins" width="160" height="40" fetchpriority="high" />
+            <source type="image/webp" srcset="/img/Or_blanc-nav.webp 1x, /img/Or_blanc-nav-2x.webp 2x" />
+            <img src="/img/Or_blanc-nav.webp" alt="Marketwins" width="35" height="40" fetchpriority="high" />
           </picture>
         </div>
         <button type="button" class="cta-nav">Démarrer</button>
@@ -171,7 +178,7 @@
     </main>
 
     <footer>
-      <p>© 2026 Kingdom Ads - Marketwins. Tous droits réservés. · <a href="/">Accueil</a> · <a href="/blog/">Blog</a> · <a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a></p>
+      <p>© 2026 Kingdom Ads - Marketwins. Tous droits réservés. · <a href="/">Accueil</a> · <a href="/blog/">Blog</a> · <a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a></p>
     </footer>
   </div>
   <script type="module" src="/src/main.jsx"></script>

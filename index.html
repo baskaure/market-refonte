@@ -4,36 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Meta Pixel Code : déclenché dès l'atterrissage (PageView) pour les pubs.
-       L'événement Lead est déclenché après inscription via src/utils/metaPixel.js. -->
+  <!-- Meta Pixel : le stub fbq met les événements en file d'attente (PageView ici,
+       Lead via src/utils/metaPixel.js). Le script Meta (≈250 Ko, 43 % du poids de
+       la page) n'est chargé qu'à la première interaction, ou au plus tard 3 s
+       après le chargement — il ne pèse plus sur le premier rendu. -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
   fbq('init', '2073138586484176');
   fbq('track', 'PageView');
+  (function(){
+    var done=false;
+    function load(){if(done)return;done=true;
+      var t=document.createElement('script');t.async=true;
+      t.src='https://connect.facebook.net/en_US/fbevents.js';
+      document.head.appendChild(t);}
+    ['pointerdown','keydown','touchstart','scroll'].forEach(function(e){
+      addEventListener(e,load,{once:true,passive:true});});
+    addEventListener('load',function(){setTimeout(load,3000)});
+  })();
   </script>
   <!-- End Meta Pixel Code -->
 
-  <title>Marketwins — Opportunités Commerciales Qualifiées | Agence Acquisition Payante</title>
-  <meta name="description" content="Marketwins génère pour vous des opportunités commerciales qualifiées à un coût connu à l'avance. Stratégie d'acquisition sur-mesure (Meta, Google, LinkedIn Ads), leads exclusifs, accompagnement de A à Z." />
+  <title>Marketwins — Opportunités commerciales qualifiées</title>
+  <meta name="description" content="Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance. Meta, Google et LinkedIn Ads — test cadré, sans engagement." />
   <meta name="author" content="Marketwins" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#060606" />
-  <link rel="canonical" href="https://www.marketwins.fr/" />
+  <link rel="canonical" href="https://marketwins.pro/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Marketwins" />
   <meta property="og:title" content="Marketwins — Opportunités Commerciales Qualifiées" />
   <meta property="og:description" content="On ne vend pas des leads. On vend des opportunités commerciales qualifiées, à un coût connu à l'avance." />
-  <meta property="og:url" content="https://www.marketwins.fr/" />
-  <meta property="og:image" content="https://www.marketwins.fr/img/og-image.jpg" />
+  <meta property="og:url" content="https://marketwins.pro/" />
+  <meta property="og:image" content="https://marketwins.pro/img/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Marketwins — des opportunités commerciales qualifiées via Meta Ads, Google Ads et LinkedIn Ads" />
@@ -41,7 +48,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Marketwins — Opportunités Commerciales Qualifiées" />
   <meta name="twitter:description" content="On ne vend pas des leads. On vend des opportunités commerciales qualifiées, à un coût connu à l'avance." />
-  <meta name="twitter:image" content="https://www.marketwins.fr/img/og-image.jpg" />
+  <meta name="twitter:image" content="https://marketwins.pro/img/og-image.jpg" />
   <meta name="twitter:image:alt" content="Marketwins — des opportunités commerciales qualifiées via Meta Ads, Google Ads et LinkedIn Ads" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png" />
@@ -56,12 +63,12 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.marketwins.fr/#organization",
+        "@id": "https://marketwins.pro/#organization",
         "name": "Marketwins",
         "alternateName": "Kingdom Ads",
-        "url": "https://www.marketwins.fr/",
-        "logo": "https://www.marketwins.fr/img/logo.webp",
-        "image": "https://www.marketwins.fr/img/og-image.jpg",
+        "url": "https://marketwins.pro/",
+        "logo": "https://marketwins.pro/img/logo.webp",
+        "image": "https://marketwins.pro/img/og-image.jpg",
         "email": "contact@kingdomads.fr",
         "description": "Agence française d'acquisition payante (Meta Ads, Google Ads, LinkedIn Ads). Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance, via des tests cadrés et sans engagement long terme. 8 ans d'expérience, plus de 200 entreprises accompagnées.",
         "founder": [
@@ -73,19 +80,19 @@
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.marketwins.fr/#website",
-        "url": "https://www.marketwins.fr/",
+        "@id": "https://marketwins.pro/#website",
+        "url": "https://marketwins.pro/",
         "name": "Marketwins",
         "inLanguage": "fr-FR",
-        "publisher": { "@id": "https://www.marketwins.fr/#organization" }
+        "publisher": { "@id": "https://marketwins.pro/#organization" }
       },
       {
         "@type": "ProfessionalService",
-        "@id": "https://www.marketwins.fr/#service",
+        "@id": "https://marketwins.pro/#service",
         "name": "Marketwins — Génération d'opportunités commerciales qualifiées",
-        "url": "https://www.marketwins.fr/",
-        "image": "https://www.marketwins.fr/img/og-image.jpg",
-        "parentOrganization": { "@id": "https://www.marketwins.fr/#organization" },
+        "url": "https://marketwins.pro/",
+        "image": "https://marketwins.pro/img/og-image.jpg",
+        "parentOrganization": { "@id": "https://marketwins.pro/#organization" },
         "description": "Campagnes publicitaires Meta, Google et LinkedIn validées par un test payant limité : appel de cadrage gratuit, test cadré avec critères de succès chiffrés, puis décision de scaler. Aucun engagement long terme.",
         "areaServed": "FR",
         "priceRange": "Sur devis"
@@ -98,8 +105,8 @@
     rel="preload"
     as="image"
     type="image/webp"
-    href="/img/Or_blanc-petit-160.webp"
-    imagesrcset="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x"
+    href="/img/Or_blanc-nav.webp"
+    imagesrcset="/img/Or_blanc-nav.webp 1x, /img/Or_blanc-nav-2x.webp 2x"
     fetchpriority="high"
   />
 
@@ -127,8 +134,8 @@
       <div class="nav-container">
         <div class="logo">
           <picture>
-            <source type="image/webp" srcset="/img/Or_blanc-petit-160.webp 1x, /img/Or_blanc-petit-320.webp 2x" />
-            <img src="/img/Or_blanc-petit-160.webp" alt="Marketwins" width="160" height="40" fetchpriority="high" />
+            <source type="image/webp" srcset="/img/Or_blanc-nav.webp 1x, /img/Or_blanc-nav-2x.webp 2x" />
+            <img src="/img/Or_blanc-nav.webp" alt="Marketwins" width="35" height="40" fetchpriority="high" />
           </picture>
         </div>
         <ul class="nav-links">
@@ -168,7 +175,7 @@
         </h1>
         <p>Arrêtez de payer pour de la visibilité. Investissez dans des opportunités commerciales réelles, à un coût connu à l'avance.</p>
         <div class="hero-buttons">
-          <button type="button" class="btn-primary">Démarrer le test</button>
+          <button type="button" class="btn-primary">Démarrer le test <span class="arr" aria-hidden="true">→</span></button>
           <a href="#process" class="btn-secondary">Voir le déroulé</a>
         </div>
       </div>
@@ -247,7 +254,7 @@
 
     <footer>
       <p>Kingdom Ads — Experts en génération d'opportunités commerciales qualifiées depuis 8 ans.</p>
-      <p><a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a> · <a href="/blog/">Blog</a></p>
+      <p><a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a> · <a href="/blog/">Blog</a> · <a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Politique de confidentialité</a></p>
       <p>© 2026 Kingdom Ads - Marketwins. Tous droits réservés.</p>
     </footer>
   </div>

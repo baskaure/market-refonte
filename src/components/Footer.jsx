@@ -20,6 +20,8 @@ export default function Footer() {
         <div className="footer-section">
           <h4>Contact</h4>
           <a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a>
+          <a href="/mentions-legales/">Mentions légales</a>
+          <a href="/confidentialite/">Politique de confidentialité</a>
         </div>
       </div>
       <div className="footer-bottom">

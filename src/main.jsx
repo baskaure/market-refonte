@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { initLeadTracking } from './utils/metaPixel'
@@ -13,14 +13,16 @@ const path =
 
 const isKingdomAds = path.startsWith('/kingdomads')
 
-const RootComponent = isKingdomAds
-  ? React.lazy(() => import('./KingdomAds.jsx'))
-  : React.lazy(() => import('./App.jsx'))
+// On ne monte React qu'une fois le chunk de page téléchargé : le HTML statique
+// pré-rendu de index.html reste affiché (et stylé) pendant ce temps, au lieu
+// d'être effacé par un fallback <Suspense> vide (flash blanc en arrivant
+// depuis /blog/). Le code-splitting entre les deux pages est conservé.
+const loadPage = isKingdomAds ? import('./KingdomAds.jsx') : import('./App.jsx')
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Suspense fallback={null}>
+loadPage.then(({ default: RootComponent }) => {
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
       <RootComponent />
-    </Suspense>
-  </React.StrictMode>,
-)
+    </React.StrictMode>,
+  )
+})

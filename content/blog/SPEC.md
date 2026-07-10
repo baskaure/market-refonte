@@ -15,7 +15,7 @@ résultats — et l'amener vers un conseil gratuit avec Marketwins.
   puis décision de scaler ou d'arrêter. Aucun engagement long terme.
 - Cible : entreprises avec une offre claire, un panier moyen cohérent, une capacité à
   traiter les demandes entrantes, une vraie volonté de croissance.
-- Site : https://www.marketwins.fr/ — RDV gratuit :
+- Site : https://www.marketwins.pro/ — RDV gratuit :
   https://calendly.com/agence-kingdomads/obtenir-des-prospects-premium
 
 ## Ton
@@ -78,5 +78,5 @@ export default {
 
 Contraintes HTML du champ `html` : uniquement `<p> <h2> <h3> <ul> <ol> <li> <strong> <em>
 <table> <thead> <tbody> <tr> <th> <td> <a>`. Pas de `<h1>`, pas de classes, pas de style
-inline. Liens externes uniquement vers marketwins.fr ou le Calendly. Échapper les
+inline. Liens externes uniquement vers marketwins.pro ou le Calendly. Échapper les
 backticks et `${` dans le template literal si besoin.
