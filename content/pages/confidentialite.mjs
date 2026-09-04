@@ -12,6 +12,7 @@ export default {
   metaTitle: 'Politique de confidentialité | Marketwins',
   metaDescription:
     'Quelles données Marketwins collecte (rendez-vous Calendly, pixel Meta, journaux techniques), pourquoi, combien de temps — et comment exercer vos droits RGPD.',
+  llms: false, // pages légales : exclues du llms-full.txt
   updated: '2026-07-10',
   html: `
 <p>La présente politique décrit comment Marketwins (exploité par Kingdom Ads) traite vos données personnelles lorsque vous consultez le site marketwins.pro, prenez rendez-vous ou nous contactez. Nous collectons peu de données, et uniquement pour des finalités précises, décrites ci-dessous.</p>

@@ -92,6 +92,13 @@ export default {
 
     <!--CTA-->
   `,
+  keyPoints: [
+    "La cause la plus fréquente d'une publicité Facebook sans résultat n'est pas technique : c'est une offre trop floue pour déclencher une action.",
+    "Viennent ensuite un budget insuffisant pour laisser l'algorithme apprendre, une mesure défaillante (pixel) et des leads jamais rappelés.",
+    "Le diagnostic se fait dans cet ordre : offre, ciblage, créa, budget, mesure, page de destination, suivi commercial.",
+    "Un test sérieux sur Meta demande en général 1 000 à 1 500 € sur 3 à 4 semaines pour produire des données exploitables.",
+    "Parfois la publicité n'est pas la solution : une offre non désirée ou un prix hors marché ne se corrigent pas avec plus de budget.",
+  ],
   faq: [
     {
       q: "Pourquoi mes publicités Facebook ne génèrent-elles aucune vente ?",

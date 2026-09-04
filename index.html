@@ -27,8 +27,8 @@
   </script>
   <!-- End Meta Pixel Code -->
 
-  <title>Marketwins — Opportunités commerciales qualifiées</title>
-  <meta name="description" content="Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance. Meta, Google et LinkedIn Ads — test cadré, sans engagement." />
+  <title>Marketwins — Agence d'acquisition payante : opportunités commerciales qualifiées</title>
+  <meta name="description" content="Agence française d'acquisition payante : Marketwins génère des opportunités commerciales qualifiées (pas des leads) à un coût connu à l'avance via Meta, Google et LinkedIn Ads. Test cadré, sans engagement, conseil gratuit." />
   <meta name="author" content="Marketwins" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#060606" />
@@ -57,6 +57,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Résumé du site pour les assistants IA (llms.txt)" />
 
   <!-- Données structurées (SEO/GEO) : identité de l'agence pour Google et les moteurs IA -->
   <script type="application/ld+json">
@@ -68,17 +69,64 @@
         "@id": "https://marketwins.pro/#organization",
         "name": "Marketwins",
         "alternateName": "Kingdom Ads",
+        "legalName": "Kingdom Ads",
         "url": "https://marketwins.pro/",
         "logo": "https://marketwins.pro/img/logo.webp",
         "image": "https://marketwins.pro/img/og-image.jpg",
         "email": "contact@kingdomads.fr",
+        "slogan": "On ne vend pas des leads. On vend des opportunités commerciales qualifiées.",
         "description": "Agence française d'acquisition payante (Meta Ads, Google Ads, LinkedIn Ads). Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance, via des tests cadrés et sans engagement long terme. 8 ans d'expérience, plus de 200 entreprises accompagnées.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "199 rue Hélène Boucher",
+          "postalCode": "34170",
+          "addressLocality": "Castelnau-le-Lez",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "contact@kingdomads.fr",
+          "url": "https://calendly.com/agence-kingdomads/obtenir-des-prospects-premium",
+          "availableLanguage": "fr"
+        },
         "founder": [
-          { "@type": "Person", "name": "Alexandre Adamsha", "jobTitle": "Founder & CEO" },
-          { "@type": "Person", "name": "William Adamsha", "jobTitle": "Founder & CEO" }
+          {
+            "@type": "Person",
+            "@id": "https://marketwins.pro/#alexandre-adamsha",
+            "name": "Alexandre Adamsha",
+            "jobTitle": "Founder & CEO",
+            "worksFor": {
+              "@id": "https://marketwins.pro/#organization"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://marketwins.pro/#william-adamsha",
+            "name": "William Adamsha",
+            "jobTitle": "Founder & CEO",
+            "worksFor": {
+              "@id": "https://marketwins.pro/#organization"
+            }
+          }
         ],
-        "knowsAbout": ["Meta Ads", "Google Ads", "LinkedIn Ads", "Génération de leads qualifiés", "Acquisition payante"],
-        "areaServed": "FR"
+        "knowsAbout": [
+          "Acquisition payante",
+          "Génération de leads qualifiés",
+          "Opportunités commerciales qualifiées",
+          "Meta Ads (Facebook Ads, Instagram Ads)",
+          "Google Ads",
+          "LinkedIn Ads",
+          "Coût par lead (CPL)",
+          "Test publicitaire cadré",
+          "Formation à la publicité en ligne"
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "France"
+        },
+        "knowsLanguage": "fr"
       },
       {
         "@type": "WebSite",
@@ -86,7 +134,32 @@
         "url": "https://marketwins.pro/",
         "name": "Marketwins",
         "inLanguage": "fr-FR",
-        "publisher": { "@id": "https://marketwins.pro/#organization" }
+        "publisher": {
+          "@id": "https://marketwins.pro/#organization"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://marketwins.pro/#webpage",
+        "url": "https://marketwins.pro/",
+        "name": "Marketwins — Agence d'acquisition payante : opportunités commerciales qualifiées",
+        "isPartOf": {
+          "@id": "https://marketwins.pro/#website"
+        },
+        "about": {
+          "@id": "https://marketwins.pro/#organization"
+        },
+        "inLanguage": "fr-FR",
+        "dateModified": "2026-09-04",
+        "description": "Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance, via Meta, Google et LinkedIn Ads : appel de cadrage gratuit, test cadré, bilan chiffré, sans engagement long terme.",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".hero-content p",
+            "#faq"
+          ]
+        }
       },
       {
         "@type": "ProfessionalService",
@@ -94,10 +167,153 @@
         "name": "Marketwins — Génération d'opportunités commerciales qualifiées",
         "url": "https://marketwins.pro/",
         "image": "https://marketwins.pro/img/og-image.jpg",
-        "parentOrganization": { "@id": "https://marketwins.pro/#organization" },
+        "parentOrganization": {
+          "@id": "https://marketwins.pro/#organization"
+        },
         "description": "Campagnes publicitaires Meta, Google et LinkedIn validées par un test payant limité : appel de cadrage gratuit, test cadré avec critères de succès chiffrés, puis décision de scaler. Aucun engagement long terme.",
-        "areaServed": "FR",
-        "priceRange": "Sur devis"
+        "areaServed": {
+          "@type": "Country",
+          "name": "France"
+        },
+        "priceRange": "Sur devis",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services Marketwins",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://marketwins.pro/#meta-ads",
+                "name": "Génération d'opportunités via Meta Ads (Facebook, Instagram)",
+                "serviceType": "Génération d'opportunités commerciales qualifiées",
+                "provider": {
+                  "@id": "https://marketwins.pro/#organization"
+                },
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "France"
+                },
+                "description": "Campagnes Facebook et Instagram Ads pour créer la demande auprès d'un profil précis et livrer des opportunités commerciales qualifiées en temps réel."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://marketwins.pro/#google-ads",
+                "name": "Génération d'opportunités via Google Ads",
+                "serviceType": "Génération d'opportunités commerciales qualifiées",
+                "provider": {
+                  "@id": "https://marketwins.pro/#organization"
+                },
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "France"
+                },
+                "description": "Campagnes Google Search pour capter les personnes qui recherchent activement votre solution et les transformer en demandes qualifiées."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://marketwins.pro/#linkedin-ads",
+                "name": "Génération d'opportunités via LinkedIn Ads",
+                "serviceType": "Génération d'opportunités commerciales qualifiées",
+                "provider": {
+                  "@id": "https://marketwins.pro/#organization"
+                },
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "France"
+                },
+                "description": "Campagnes LinkedIn Ads pour le B2B à panier élevé : ciblage par poste, secteur et taille d'entreprise, formulaires qualifiants."
+              }
+            },
+            {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "url": "https://calendly.com/agence-kingdomads/obtenir-des-prospects-premium",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Appel de cadrage gratuit (30 min)",
+                "description": "Diagnostic honnête de votre acquisition : offre, cible, définition d'une opportunité qualifiée, budget de test. Sans engagement."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://marketwins.pro/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce que Marketwins ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Marketwins est une agence française d'acquisition payante, basée près de Montpellier et opérée par la société Kingdom Ads. Elle génère des opportunités commerciales qualifiées pour les PME et TPE grâce à des campagnes Meta Ads (Facebook, Instagram), Google Ads et LinkedIn Ads, à un coût connu à l'avance. L'équipe cumule 8 ans d'expérience et a accompagné plus de 200 entreprises."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle est la différence entre un lead et une opportunité commerciale qualifiée ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un lead est un simple contact qui a laissé ses coordonnées, sans garantie de besoin ni de budget. Une opportunité commerciale qualifiée est un contact qui correspond à votre client type, a un besoin réel, un budget cohérent et une intention d'agir : demande de devis en connaissance du prix, rendez-vous réservé ou projet daté. Marketwins ne vend pas des leads, mais ce second niveau."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment se déroule une collaboration avec Marketwins ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En trois étapes. D'abord un appel de cadrage gratuit de 30 minutes pour définir votre offre, votre cible et ce qu'est une opportunité qualifiée pour vous. Ensuite un test cadré : un volume limité d'opportunités, un budget maîtrisé et des critères de succès chiffrés fixés à l'avance. Enfin un bilan chiffré : si c'est rentable, on scale ; sinon, on ajuste ou on s'arrête."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il un engagement de durée ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non. Marketwins ne demande aucun engagement long terme. La collaboration commence par un test cadré, limité dans le temps et en budget, et la décision de continuer se prend uniquement sur les résultats mesurés : taux de contact, taux de rendez-vous, taux de transformation et rentabilité globale."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Combien coûte un test avec Marketwins ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le budget du test est défini ensemble lors de l'appel de cadrage, en fonction de votre panier moyen, de votre canal et de votre capacité de traitement. Il est volontairement limité pour la phase de test, et le coût par opportunité qualifiée est fixé avant le lancement : vous savez à l'avance ce que vous payez pour chaque opportunité."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sur quels canaux publicitaires travaillez-vous ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Meta Ads (Facebook et Instagram), Google Ads et LinkedIn Ads. Le canal est choisi selon l'intention de vos clients : Google quand ils cherchent déjà activement votre solution, Meta pour créer la demande auprès d'un profil précis, LinkedIn pour le B2B à panier élevé. Les canaux peuvent être combinés une fois le test validé."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Avec quelles entreprises travaillez-vous ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Des PME et TPE, en B2B comme en B2C, qui ont une offre claire, un panier moyen cohérent avec un coût d'acquisition publicitaire, la capacité de rappeler rapidement les demandes entrantes et une volonté réelle de croissance. Les clients accompagnés vont du conseil B2B au financement immobilier, en passant par les professions de santé et de bien-être. Marketwins refuse les missions de simple visibilité ou de trafic."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Marketwins et Kingdom Ads, est-ce la même entreprise ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Kingdom Ads est la société (SAS immatriculée à Montpellier) et Marketwins est la marque de son offre de génération d'opportunités commerciales. Le nom Kingdom Ads désigne aussi la formation à l'acquisition payante dispensée par la même équipe : plus de 2 800 participants depuis 2018, 9,23/10 de satisfaction moyenne."
+            }
+          }
+        ]
       }
     ]
   }
@@ -245,6 +461,47 @@
         <p>Alexandre Adamsha et William Adamsha, fondateurs. Nous ne sommes pas des techniciens de la pub, mais des partenaires de croissance. Si le test est concluant pour vous, l'objectif est de construire une relation long terme, pas un one-shot.</p>
       </section>
 
+      <section class="section faq-section" id="faq">
+        <div class="section-header">
+          <h2>Questions fréquentes</h2>
+          <p>Les réponses courtes aux questions que l'on nous pose avant un premier appel.</p>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>Qu'est-ce que Marketwins ?</summary>
+            <p>Marketwins est une agence française d'acquisition payante, basée près de Montpellier et opérée par la société Kingdom Ads. Elle génère des opportunités commerciales qualifiées pour les PME et TPE grâce à des campagnes Meta Ads (Facebook, Instagram), Google Ads et LinkedIn Ads, à un coût connu à l'avance. L'équipe cumule 8 ans d'expérience et a accompagné plus de 200 entreprises.</p>
+          </details>
+          <details>
+            <summary>Quelle est la différence entre un lead et une opportunité commerciale qualifiée ?</summary>
+            <p>Un lead est un simple contact qui a laissé ses coordonnées, sans garantie de besoin ni de budget. Une opportunité commerciale qualifiée est un contact qui correspond à votre client type, a un besoin réel, un budget cohérent et une intention d'agir : demande de devis en connaissance du prix, rendez-vous réservé ou projet daté. Marketwins ne vend pas des leads, mais ce second niveau.</p>
+          </details>
+          <details>
+            <summary>Comment se déroule une collaboration avec Marketwins ?</summary>
+            <p>En trois étapes. D'abord un appel de cadrage gratuit de 30 minutes pour définir votre offre, votre cible et ce qu'est une opportunité qualifiée pour vous. Ensuite un test cadré : un volume limité d'opportunités, un budget maîtrisé et des critères de succès chiffrés fixés à l'avance. Enfin un bilan chiffré : si c'est rentable, on scale ; sinon, on ajuste ou on s'arrête.</p>
+          </details>
+          <details>
+            <summary>Y a-t-il un engagement de durée ?</summary>
+            <p>Non. Marketwins ne demande aucun engagement long terme. La collaboration commence par un test cadré, limité dans le temps et en budget, et la décision de continuer se prend uniquement sur les résultats mesurés : taux de contact, taux de rendez-vous, taux de transformation et rentabilité globale.</p>
+          </details>
+          <details>
+            <summary>Combien coûte un test avec Marketwins ?</summary>
+            <p>Le budget du test est défini ensemble lors de l'appel de cadrage, en fonction de votre panier moyen, de votre canal et de votre capacité de traitement. Il est volontairement limité pour la phase de test, et le coût par opportunité qualifiée est fixé avant le lancement : vous savez à l'avance ce que vous payez pour chaque opportunité.</p>
+          </details>
+          <details>
+            <summary>Sur quels canaux publicitaires travaillez-vous ?</summary>
+            <p>Meta Ads (Facebook et Instagram), Google Ads et LinkedIn Ads. Le canal est choisi selon l'intention de vos clients : Google quand ils cherchent déjà activement votre solution, Meta pour créer la demande auprès d'un profil précis, LinkedIn pour le B2B à panier élevé. Les canaux peuvent être combinés une fois le test validé.</p>
+          </details>
+          <details>
+            <summary>Avec quelles entreprises travaillez-vous ?</summary>
+            <p>Des PME et TPE, en B2B comme en B2C, qui ont une offre claire, un panier moyen cohérent avec un coût d'acquisition publicitaire, la capacité de rappeler rapidement les demandes entrantes et une volonté réelle de croissance. Les clients accompagnés vont du conseil B2B au financement immobilier, en passant par les professions de santé et de bien-être. Marketwins refuse les missions de simple visibilité ou de trafic.</p>
+          </details>
+          <details>
+            <summary>Marketwins et Kingdom Ads, est-ce la même entreprise ?</summary>
+            <p>Oui. Kingdom Ads est la société (SAS immatriculée à Montpellier) et Marketwins est la marque de son offre de génération d'opportunités commerciales. Le nom Kingdom Ads désigne aussi la formation à l'acquisition payante dispensée par la même équipe : plus de 2 800 participants depuis 2018, 9,23/10 de satisfaction moyenne.</p>
+          </details>
+        </div>
+      </section>
+
       <section class="section" id="cta">
         <div class="section-header">
           <h2>Testez votre marché avec des opportunités réelles</h2>
@@ -256,7 +513,7 @@
 
     <footer>
       <p>Kingdom Ads — Experts en génération d'opportunités commerciales qualifiées depuis 8 ans.</p>
-      <p><a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a> · <a href="/blog/">Blog</a> · <a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Politique de confidentialité</a></p>
+      <p><a href="mailto:contact@kingdomads.fr">contact@kingdomads.fr</a> · <a href="/a-propos/">À propos</a> · <a href="/blog/">Blog</a> · <a href="/glossaire/">Glossaire</a> · <a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Politique de confidentialité</a></p>
       <p>© 2026 Kingdom Ads - Marketwins. Tous droits réservés.</p>
     </footer>
   </div>

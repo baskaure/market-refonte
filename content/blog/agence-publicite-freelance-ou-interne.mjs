@@ -134,6 +134,13 @@ export default {
 
     <!--CTA-->
   `,
+  keyPoints: [
+    "En dessous d'environ 1 000 à 1 500 € de budget publicitaire mensuel, une agence se justifie rarement : gérer soi-même ou prendre un freelance est plus cohérent.",
+    "Gérer ses campagnes en interne coûte peu en argent mais beaucoup en temps et en courbe d'apprentissage ; le coût caché est celui des erreurs de réglage.",
+    "Quel que soit le prestataire, exigez la propriété de vos comptes publicitaires, une transparence totale sur le budget média et l'absence d'engagement long terme.",
+    "Les signaux d'alerte : résultats garantis, engagement de 12 mois, reporting centré sur les impressions et les clics, compte publicitaire au nom de l'agence.",
+    "Le meilleur moyen de choisir sans risque est un test cadré : budget limité, durée définie, critères de succès chiffrés avant de lancer.",
+  ],
   faq: [
     {
       q: "Faut-il passer par une agence pour gérer ses campagnes Google Ads ?",

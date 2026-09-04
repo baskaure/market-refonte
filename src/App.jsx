@@ -11,6 +11,7 @@ const WhoIsItFor = lazy(() => import('./components/WhoIsItFor'))
 const Testimonials = lazy(() => import('./components/Testimonials'))
 const CTA = lazy(() => import('./components/CTA'))
 const Team = lazy(() => import('./components/Team'))
+const FAQ = lazy(() => import('./components/FAQ'))
 const Footer = lazy(() => import('./components/Footer'))
 const VideoModal = lazy(() => import('./components/VideoModal'))
 
@@ -30,6 +31,7 @@ function App() {
         <Testimonials />
         <CTA />
         <Team />
+        <FAQ />
         <Footer />
         <VideoModal />
       </Suspense>

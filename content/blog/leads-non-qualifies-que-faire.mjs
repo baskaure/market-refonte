@@ -92,6 +92,13 @@ export default {
 
     <!--CTA-->
   `,
+  keyPoints: [
+    "Des leads non qualifiés viennent presque toujours du dispositif d'acquisition : formulaire trop facile, promesse d'annonce trop généreuse, ciblage trop large ou mauvais événement de conversion.",
+    "Un lead est un simple contact ; un lead qualifié correspond au client type (besoin, budget, décision, échéance) ; une opportunité commerciale ajoute l'intention d'agir.",
+    "La solution n'est pas de générer plus de leads mais d'ajouter de la friction qualifiante : questions, prix annoncé, engagement demandé.",
+    "Le délai de rappel est décisif : un lead contacté dans les minutes qui suivent sa demande répond beaucoup plus souvent qu'un lead rappelé le lendemain.",
+    "Quand les leads sont bons mais que rien ne se signe, le problème est souvent le traitement commercial, pas la campagne.",
+  ],
   faq: [
     {
       q: "Mes leads ne répondent pas au téléphone, que faire ?",

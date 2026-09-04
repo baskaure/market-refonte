@@ -1,10 +1,12 @@
-# Tous les crawlers sont les bienvenus, y compris les crawlers des moteurs IA
-# (GEO : être lisible par ChatGPT, Claude, Perplexity, Gemini est volontaire).
+# Tous les crawlers sont les bienvenus, y compris ceux des moteurs et
+# assistants IA (GEO : être lu et cité par ChatGPT, Claude, Perplexity,
+# Gemini, Copilot, Mistral… est volontaire).
 
 User-agent: *
 Allow: /
 
-# Crawlers IA — autorisés explicitement
+# ─── Crawlers IA — autorisés explicitement ──────────────────────────────
+# OpenAI (entraînement, recherche ChatGPT, navigation à la demande)
 User-agent: GPTBot
 Allow: /
 
@@ -14,31 +16,83 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+# Anthropic (Claude)
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: anthropic-ai
 Allow: /
 
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
 User-agent: Perplexity-User
 Allow: /
 
+# Google (AI Overviews, Gemini, Vertex)
 User-agent: Google-Extended
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
+# Microsoft Bing / Copilot
+User-agent: Bingbot
+Allow: /
+
+# Apple (Siri, Apple Intelligence)
+User-agent: Applebot
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Mistral
+User-agent: MistralAI-User
+Allow: /
+
+# Amazon (Alexa, Rufus)
+User-agent: Amazonbot
+Allow: /
+
+# DuckDuckGo AI, You.com, Cohere, Common Crawl, ByteDance
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 User-agent: CCBot
 Allow: /
 
-User-agent: meta-externalagent
+User-agent: Bytespider
 Allow: /
+
+# ─── Ressources utiles aux IA ───────────────────────────────────────────
+# Résumé du site au format llms.txt : https://marketwins.pro/llms.txt
+# Contenu intégral : https://marketwins.pro/llms-full.txt
 
 Sitemap: https://marketwins.pro/sitemap.xml

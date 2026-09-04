@@ -73,8 +73,19 @@ export default {
   faq: [
     { q: "Question telle qu'on la pose à une IA ?", a: "Réponse autonome. Texte brut, pas de HTML." },
   ],
+  // Depuis septembre 2026 — blocs citables supplémentaires (recommandés) :
+  keyPoints: [
+    "4 à 5 phrases courtes, autonomes, texte brut : les points à retenir (bloc « À retenir » sous la réponse en bref).",
+  ],
+  glossary: [
+    { term: 'Terme technique', definition: "Définition en 1-2 phrases, texte brut (bloc « Définitions utiles » + JSON-LD DefinedTermSet)." },
+  ],
 }
 ```
+
+Le build génère aussi `dist/llms.txt` (index) et `dist/llms-full.txt` (texte intégral de
+tous les articles et pages) : rien à faire à la main, tout nouvel article y entre
+automatiquement. Les termes généraux vont dans `content/pages/glossaire.mjs`.
 
 Contraintes HTML du champ `html` : uniquement `<p> <h2> <h3> <ul> <ol> <li> <strong> <em>
 <table> <thead> <tbody> <tr> <th> <td> <a>`. Pas de `<h1>`, pas de classes, pas de style

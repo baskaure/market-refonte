@@ -124,6 +124,13 @@ export default {
 
     <!--CTA-->
   `,
+  keyPoints: [
+    "Une PME peut trouver des clients avec la publicité digitale à trois conditions : une offre claire, un panier moyen qui absorbe le coût d'acquisition et la capacité à traiter les demandes.",
+    "Le canal se choisit selon l'intention : Google Search si vos clients cherchent déjà votre solution, Meta pour créer la demande, LinkedIn pour le B2B à panier élevé.",
+    "On valide par un test à petit budget, sur une durée définie, avec des critères de succès chiffrés fixés avant de lancer.",
+    "Avant de dépenser 1 €, vérifiez les prérequis : page de destination dédiée, suivi des conversions, personne disponible pour rappeler vite.",
+    "La publicité amplifie ce qui existe : elle ne répare ni une offre inadaptée, ni un prix hors marché, ni un traitement commercial défaillant.",
+  ],
   faq: [
     {
       q: "Comment trouver des clients rapidement pour ma PME ?",

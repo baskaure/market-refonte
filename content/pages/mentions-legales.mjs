@@ -9,6 +9,7 @@ export default {
   metaTitle: 'Mentions légales | Marketwins',
   metaDescription:
     'Mentions légales du site marketwins.pro — éditeur Kingdom Ads (SAS), directeur de la publication, hébergeur, propriété intellectuelle et contact.',
+  llms: false, // pages légales : exclues du llms-full.txt
   updated: '2026-07-10',
   html: `
 <h2>Éditeur du site</h2>

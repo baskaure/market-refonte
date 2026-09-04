@@ -78,6 +78,13 @@ export default {
 
     <!--CTA-->
   `,
+  keyPoints: [
+    "Quand Google Ads dépense sans générer de clients, la cause se trouve presque toujours parmi huit réglages, à vérifier dans l'ordre.",
+    "Commencez par le rapport des termes de recherche : des mots-clés trop larges font sortir vos annonces sur des requêtes hors sujet qui consomment le budget.",
+    "Un suivi des conversions absent ou faux rend tout pilotage impossible : l'algorithme optimise à l'aveugle et le reporting ment.",
+    "Les enchères intelligentes et Performance Max ont besoin de données de conversion fiables ; lancées trop tôt, elles dépensent sans apprendre.",
+    "Si personne ne cherche votre solution sur Google, le problème n'est pas le réglage : Meta Ads, qui crée la demande, est alors plus adapté.",
+  ],
   faq: [
     {
       q: "Pourquoi mes campagnes Google Ads ne convertissent pas alors que j'ai des clics ?",

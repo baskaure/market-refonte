@@ -33,17 +33,89 @@ const jsonLd = (obj) => `<script type="application/ld+json">${JSON.stringify(obj
 
 const pad2 = (n) => String(n).padStart(2, '0')
 
+/* Entité Organization partagée par toutes les pages générées. Faits uniquement
+   (mentions légales, contenu du site) : rien d'inventé. Même bloc que dans
+   index.html et kingdomads/index.html — garder les trois synchronisés. */
 const ORG = {
   '@type': 'Organization',
   '@id': `${SITE}/#organization`,
   name: 'Marketwins',
   alternateName: 'Kingdom Ads',
+  legalName: 'Kingdom Ads',
   url: `${SITE}/`,
   logo: `${SITE}/img/logo.webp`,
+  image: `${SITE}/img/og-image.jpg`,
   email: 'contact@kingdomads.fr',
+  slogan: "On ne vend pas des leads. On vend des opportunités commerciales qualifiées.",
   description:
-    "Agence française d'acquisition payante (Meta Ads, Google Ads, LinkedIn Ads). Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance, via des tests cadrés et sans engagement long terme.",
+    "Agence française d'acquisition payante (Meta Ads, Google Ads, LinkedIn Ads). Marketwins génère des opportunités commerciales qualifiées à un coût connu à l'avance, via des tests cadrés et sans engagement long terme. 8 ans d'expérience, plus de 200 entreprises accompagnées.",
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '199 rue Hélène Boucher',
+    postalCode: '34170',
+    addressLocality: 'Castelnau-le-Lez',
+    addressRegion: 'Occitanie',
+    addressCountry: 'FR',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: 'contact@kingdomads.fr',
+    url: CALENDLY,
+    availableLanguage: 'fr',
+  },
+  founder: [
+    { '@type': 'Person', '@id': `${SITE}/#alexandre-adamsha`, name: 'Alexandre Adamsha', jobTitle: 'Founder & CEO', worksFor: { '@id': `${SITE}/#organization` } },
+    { '@type': 'Person', '@id': `${SITE}/#william-adamsha`, name: 'William Adamsha', jobTitle: 'Founder & CEO', worksFor: { '@id': `${SITE}/#organization` } },
+  ],
+  knowsAbout: [
+    'Acquisition payante',
+    'Génération de leads qualifiés',
+    'Opportunités commerciales qualifiées',
+    'Meta Ads (Facebook Ads, Instagram Ads)',
+    'Google Ads',
+    'LinkedIn Ads',
+    'Coût par lead (CPL)',
+    'Test publicitaire cadré',
+    'Formation à la publicité en ligne',
+  ],
+  areaServed: { '@type': 'Country', name: 'France' },
+  knowsLanguage: 'fr',
 }
+
+/* Plain text : sert au llms-full.txt (les IA lisent mieux du markdown
+   propre que du HTML). Conversion volontairement simple. */
+const strip = (t) =>
+  String(t)
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+function htmlToMd(html) {
+  return String(html)
+    .replace(/<!--CTA-->/g, '')
+    .replace(/<h2[^>]*>([\s\S]*?)<\/h2>/g, (_, t) => `\n## ${strip(t)}\n`)
+    .replace(/<h3[^>]*>([\s\S]*?)<\/h3>/g, (_, t) => `\n### ${strip(t)}\n`)
+    .replace(/<li[^>]*>([\s\S]*?)<\/li>/g, (_, t) => `- ${strip(t)}\n`)
+    .replace(/<tr[^>]*>([\s\S]*?)<\/tr>/g, (_, row) => {
+      const cells = [...row.matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/g)].map((m) => strip(m[1]))
+      return `| ${cells.join(' | ')} |\n`
+    })
+    .replace(/<p[^>]*>([\s\S]*?)<\/p>/g, (_, t) => `${strip(t)}\n\n`)
+    .replace(/<[^>]+>/g, '')
+    .split('\n')
+    .map((l) => l.trim())
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}
+
+const wordCount = (html) => strip(html).split(' ').filter(Boolean).length
 
 /* ------------------------------------------------------------------ style */
 /* Direction : éditorial luxe. Noir profond légèrement chaud, or en accent
@@ -138,6 +210,17 @@ article table{width:100%;border-collapse:collapse;margin:1.8rem 0;font-size:.92r
 article th,article td{border:1px solid var(--hairline-soft);padding:.75rem .95rem;text-align:left;vertical-align:top}
 article th{background:rgba(212,175,55,.09);color:var(--gold-light);font-weight:700;white-space:nowrap}
 article tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+
+/* ── points clés & définitions (blocs citables) ── */
+.key-points{margin:0 0 2.6rem;padding:1.4rem 1.6rem 1.2rem;border:1px solid var(--hairline-soft);border-radius:14px;background:rgba(255,255,255,.015)}
+.key-points h2{color:var(--gold);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:400;margin:0 0 .8rem;padding:0;border:0}
+.key-points ul{margin:0 0 0 1.2rem}
+.key-points li{margin-bottom:.45rem;color:var(--text)}
+.glossary{margin-top:3.4rem;border-top:1px solid var(--hairline);padding-top:2.2rem}
+.glossary h2{color:#fff;font-weight:700;font-size:1.35rem;margin-bottom:1.2rem}
+.glossary dl{display:grid;gap:1rem}
+.glossary dt{color:var(--gold-light);font-weight:700;font-size:1rem}
+.glossary dd{color:var(--muted);margin:0.2rem 0 0;max-width:62ch}
 
 /* ── encart CTA ── */
 .cta-box{position:relative;text-align:center;margin:3.4rem 0;padding:2.4rem 1.9rem 2.2rem;border-radius:18px;
@@ -235,14 +318,14 @@ const SPECULATION = `<script type="speculationrules">{"prefetch":[{"where":{"and
 // Le sous-titre de la marque est « Le blog » sur les pages du blog, absent ailleurs.
 const navBar = (subtitle) => `<nav class="nav"><div class="nav-inner">
 <a class="brand" href="/" aria-label="Marketwins — accueil"><picture><source type="image/webp" srcset="/img/Or_blanc-nav.webp 1x, /img/Or_blanc-nav-2x.webp 2x"><img src="/img/Or_blanc-nav.webp" alt="" width="35" height="40"></picture><span class="brand-text"><b>Marketwins</b>${subtitle ? `<em>${subtitle}</em>` : ''}</span></a>
-<ul class="nav-links"><li class="hide-mobile"><a href="/">Accueil</a></li><li class="hide-mobile"><a href="/blog/">Blog</a></li><li><a class="btn-gold btn-sm" href="${CALENDLY}" target="_blank" rel="noopener">Conseil gratuit <span class="arr" aria-hidden="true">→</span></a></li></ul>
+<ul class="nav-links"><li class="hide-mobile"><a href="/">Accueil</a></li><li class="hide-mobile"><a href="/blog/">Blog</a></li><li class="hide-mobile"><a href="/glossaire/">Glossaire</a></li><li><a class="btn-gold btn-sm" href="${CALENDLY}" target="_blank" rel="noopener">Conseil gratuit <span class="arr" aria-hidden="true">→</span></a></li></ul>
 </div></nav>`
 
 const NAV = navBar('Le blog')
 
 const FOOTER = `<footer><div class="footer-inner">
 <p>© 2026 Kingdom Ads — Marketwins. Opportunités commerciales qualifiées.</p>
-<nav aria-label="Pied de page"><a href="/">Accueil</a><a href="/blog/">Blog</a><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><a href="mailto:contact@kingdomads.fr">Contact</a></nav>
+<nav aria-label="Pied de page"><a href="/">Accueil</a><a href="/a-propos/">À propos</a><a href="/blog/">Blog</a><a href="/glossaire/">Glossaire</a><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><a href="mailto:contact@kingdomads.fr">Contact</a></nav>
 </div></footer>`
 
 const CTA_BOX = `<div class="cta-box">
@@ -280,6 +363,7 @@ ${published ? `<meta property="article:published_time" content="${published}">\n
 <link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Résumé du site pour les assistants IA (llms.txt)">
 ${FONTS}
 ${SPECULATION}
 ${PIXEL}
@@ -290,7 +374,11 @@ ${PIXEL}
 function articlePage(a, all) {
   const url = `${SITE}/blog/${a.slug}/`
   const body = a.html.replaceAll('<!--CTA-->', CTA_BOX)
-  const related = all.filter((o) => o.slug !== a.slug).slice(0, 3)
+  // Articles liés : même catégorie d'abord, puis les plus récents.
+  const others = all.filter((o) => o.slug !== a.slug)
+  const related = [...others.filter((o) => o.category === a.category), ...others.filter((o) => o.category !== a.category)].slice(0, 3)
+  const keyPoints = Array.isArray(a.keyPoints) ? a.keyPoints : []
+  const glossary = Array.isArray(a.glossary) ? a.glossary : []
 
   const ld = [
     {
@@ -308,7 +396,29 @@ function articlePage(a, all) {
       publisher: { '@id': `${SITE}/#organization` },
       articleSection: a.category,
       timeRequired: `PT${a.readingMinutes}M`,
+      wordCount: wordCount(a.html),
+      isPartOf: { '@id': `${SITE}/blog/#blog` },
+      about: [a.category, 'Publicité en ligne', 'Génération de leads'].map((name) => ({ '@type': 'Thing', name })),
+      abstract: a.quickAnswer,
+      speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.quick-answer p', '.key-points'] },
+      isAccessibleForFree: true,
     },
+    ...(glossary.length
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'DefinedTermSet',
+            '@id': `${url}#glossary`,
+            name: `Définitions — ${a.title}`,
+            hasDefinedTerm: glossary.map(({ term, definition }) => ({
+              '@type': 'DefinedTerm',
+              name: term,
+              description: definition,
+              inDefinedTermSet: `${url}#glossary`,
+            })),
+          },
+        ]
+      : []),
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -347,6 +457,7 @@ ${NAV}
 <h1>${esc(a.title)}</h1>
 <p class="meta-line"><b>L'équipe Marketwins</b><span class="meta-sep">·</span>${frDate(a.datePublished)}${a.dateModified && a.dateModified !== a.datePublished ? `<span class="meta-sep">·</span>mis à jour le ${frDate(a.dateModified)}` : ''}<span class="meta-sep">·</span>${a.readingMinutes} min de lecture</p>
 <div class="quick-answer"><span class="qa-label">La réponse en bref</span><p>${esc(a.quickAnswer)}</p></div>
+${keyPoints.length ? `<section class="key-points" aria-label="Points clés"><h2>À retenir</h2><ul>${keyPoints.map((k) => `<li>${esc(k)}</li>`).join('')}</ul></section>` : ''}
 ${body}
 <section class="faq">
 <h2>Questions fréquentes</h2>
@@ -359,6 +470,7 @@ ${a.faq
   )
   .join('\n')}
 </section>
+${glossary.length ? `<section class="glossary" aria-label="Définitions"><h2>Définitions utiles</h2><dl>${glossary.map(({ term, definition }) => `<div><dt>${esc(term)}</dt><dd>${esc(definition)}</dd></div>`).join('')}</dl></section>` : ''}
 <div class="author-box"><span class="mono" aria-hidden="true">M</span><div><strong>À propos de Marketwins</strong> — Agence d'acquisition payante (Meta, Google et LinkedIn Ads) : 8 ans d'expérience, plus de 200 entreprises accompagnées. Nous générons des opportunités commerciales qualifiées à un coût connu à l'avance, validées par un test cadré, sans engagement long terme. <a href="${CALENDLY}" target="_blank" rel="noopener">Réserver un conseil gratuit</a>.</div></div>
 <section class="related">
 <h2>À lire ensuite</h2>
@@ -448,7 +560,7 @@ function simplePage(p) {
   const ld = [
     {
       '@context': 'https://schema.org',
-      '@type': 'WebPage',
+      '@type': p.pageType || 'WebPage',
       '@id': `${url}#webpage`,
       name: p.title,
       description: p.metaDescription,
@@ -456,7 +568,9 @@ function simplePage(p) {
       inLanguage: 'fr-FR',
       dateModified: p.updated,
       publisher: { '@id': `${SITE}/#organization` },
+      ...(p.mainEntityId ? { mainEntity: { '@id': p.mainEntityId } } : {}),
     },
+    ...(Array.isArray(p.extraLd) ? p.extraLd.map((o) => ({ '@context': 'https://schema.org', ...o })) : []),
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -502,8 +616,8 @@ function sitemap(all, pages) {
     })),
     ...pages.map((p) => ({
       loc: `${SITE}/${p.slug}/`,
-      priority: '0.3',
-      changefreq: 'yearly',
+      priority: p.priority || '0.3',
+      changefreq: p.changefreq || 'yearly',
       lastmod: p.updated,
     })),
   ]
@@ -520,6 +634,72 @@ ${urls
   .join('\n')}
 </urlset>
 `
+}
+
+/* ------------------------------------------------------------ llms.txt */
+/* https://llmstxt.org — index lisible par les assistants IA, généré à
+   partir du contenu réel pour ne jamais être désynchronisé. */
+
+const LLMS_INTRO = `# Marketwins
+
+> Marketwins (entité opérante : Kingdom Ads, SAS basée à Castelnau-le-Lez près de Montpellier, France) est une agence française d'acquisition payante — Meta Ads (Facebook/Instagram), Google Ads et LinkedIn Ads. Elle génère des opportunités commerciales qualifiées à un coût connu à l'avance : appel de cadrage gratuit, test payant limité avec critères de succès chiffrés, puis décision de scaler ou d'arrêter. Aucun engagement long terme. 8 ans d'expérience, plus de 200 entreprises accompagnées.
+
+## Faits clés
+
+- Marque : Marketwins. Société : Kingdom Ads (SAS, RCS Montpellier). Kingdom Ads désigne aussi la formation à l'acquisition payante (plus de 2 800 participants depuis 2018, 9,23/10 de satisfaction moyenne).
+- Fondateurs : Alexandre Adamsha et William Adamsha (Founder & CEO).
+- Positionnement : « On ne vend pas des leads. On vend des opportunités commerciales qualifiées, à un coût connu à l'avance. » Anti vanity-metrics (likes, impressions, clics).
+- Méthode en 3 étapes : (1) appel de cadrage gratuit de 30 minutes, (2) test payant limité et cadré avec critères de succès chiffrés, (3) bilan chiffré puis décision : scaler, ajuster ou arrêter. Pas d'engagement long terme.
+- Définition d'une opportunité commerciale qualifiée : un contact qui correspond au client type, a un besoin réel, un budget cohérent et une intention d'agir (demande de devis en connaissance du prix, rendez-vous réservé, projet daté). 100 % des opportunités proviennent de campagnes publicitaires actives, aucune base achetée, transmission en temps réel.
+- Clients types : PME et TPE, B2B et B2C, avec une offre claire, un panier moyen cohérent, une capacité à traiter les demandes entrantes et une volonté réelle de croissance. Marketwins refuse les missions « visibilité » ou « trafic » sans lien avec les ventes.
+- Contact : contact@kingdomads.fr — Conseil gratuit (30 min) : ${CALENDLY}
+
+## Pages principales
+
+- [Accueil — l'offre et la méthode](${SITE}/) : opportunités commerciales qualifiées via la publicité payante, testées avant d'être scalées. FAQ en bas de page.
+- [À propos](${SITE}/a-propos/) : qui est Marketwins / Kingdom Ads, les fondateurs, la méthode, les chiffres.
+- [Glossaire de l'acquisition payante](${SITE}/glossaire/) : définitions courtes (CPL, ROAS, lead qualifié, opportunité commerciale, test cadré…).
+- [Formation Kingdom Ads](${SITE}/kingdomads/) : formation à l'acquisition payante — plus de 2 800 participants formés depuis 2018, 9,23/10 de satisfaction moyenne.
+`
+
+function llmsTxt(all) {
+  const byCat = {}
+  for (const a of all) (byCat[a.category] ||= []).push(a)
+  const lines = [LLMS_INTRO, '## Blog — réponses aux questions des annonceurs', '']
+  for (const [cat, list] of Object.entries(byCat)) {
+    lines.push(`### ${cat}`, '')
+    for (const a of list) lines.push(`- [${a.title}](${SITE}/blog/${a.slug}/) : ${a.excerpt}`)
+    lines.push('')
+  }
+  lines.push('## Optional', '', `- [Version complète (tous les articles en texte intégral)](${SITE}/llms-full.txt)`, `- [Plan du site](${SITE}/sitemap.xml)`, '')
+  return lines.join('\n')
+}
+
+function llmsFullTxt(all, pages) {
+  const out = [LLMS_INTRO, '---', '']
+  for (const p of pages.filter((p) => p.llms !== false)) {
+    out.push(`# ${p.title}`, '', `Source : ${SITE}/${p.slug}/ — mis à jour le ${p.updated}`, '', htmlToMd(p.html), '', '---', '')
+  }
+  for (const a of all) {
+    out.push(
+      `# ${a.title}`,
+      '',
+      `Source : ${SITE}/blog/${a.slug}/ — publié le ${a.datePublished}${a.dateModified && a.dateModified !== a.datePublished ? `, mis à jour le ${a.dateModified}` : ''} — catégorie : ${a.category} — auteur : Marketwins`,
+      '',
+      `**Réponse en bref :** ${a.quickAnswer}`,
+      ''
+    )
+    if (Array.isArray(a.keyPoints) && a.keyPoints.length) out.push('**À retenir :**', ...a.keyPoints.map((k) => `- ${k}`), '')
+    out.push(htmlToMd(a.html), '', '## Questions fréquentes', '')
+    for (const { q, a: ans } of a.faq) out.push(`**${q}**`, '', ans, '')
+    if (Array.isArray(a.glossary) && a.glossary.length) {
+      out.push('## Définitions', '')
+      for (const { term, definition } of a.glossary) out.push(`- **${term}** : ${definition}`)
+      out.push('')
+    }
+    out.push('---', '')
+  }
+  return out.join('\n')
 }
 
 /* ------------------------------------------------------------------- run */
@@ -560,7 +740,9 @@ for (const p of pages) {
   await writeFile(path.join(dir, 'index.html'), simplePage(p))
 }
 await writeFile(path.join(DIST, 'sitemap.xml'), sitemap(articles, pages))
+await writeFile(path.join(DIST, 'llms.txt'), llmsTxt(articles))
+await writeFile(path.join(DIST, 'llms-full.txt'), llmsFullTxt(articles, pages))
 
-console.log(`Blog généré : ${articles.length} articles + index + ${pages.length} page(s) + sitemap.xml`)
+console.log(`Blog généré : ${articles.length} articles + index + ${pages.length} page(s) + sitemap.xml + llms.txt + llms-full.txt`)
 for (const a of articles) console.log(`  /blog/${a.slug}/`)
 for (const p of pages) console.log(`  /${p.slug}/`)

@@ -105,6 +105,13 @@ export default {
 
     <!--CTA-->
   `,
+  keyPoints: [
+    "Un test publicitaire sérieux pour une PME demande en général 1 000 à 3 000 € de budget média par mois sur un canal, pendant 2 à 3 mois.",
+    "La gestion des campagnes (freelance ou agence) représente le plus souvent 500 à 2 000 € par mois en plus du budget média.",
+    "Le coût par lead constaté varie généralement de 10 à 60 € sur Meta Ads, 30 à 120 € sur Google Search et 80 à 250 € sur LinkedIn Ads selon le secteur.",
+    "Le bon raisonnement n'est pas le prix du clic mais le coût d'acquisition d'un client comparé à ce qu'il rapporte (panier moyen, marge, récurrence).",
+    "En dessous d'un certain budget, la publicité ne produit pas assez de données pour être pilotée : mieux vaut concentrer le budget sur un seul canal et une seule offre.",
+  ],
   faq: [
     {
       q: "Combien coûte une campagne Google Ads par mois pour une PME ?",
