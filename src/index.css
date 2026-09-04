@@ -323,8 +323,11 @@ nav.nav-scrolled {
 
 .hero h1 {
   font-size: 4.5rem;
-  font-weight: 1000;
-  line-height: 1.2;
+  /* 700 : même graisse que les boutons/CTA. Outfit s'arrête à 900 — l'ancien
+     1000 rendait un Black qu'on ne retrouvait nulle part ailleurs sur la page. */
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   color: var(--white);
 }
